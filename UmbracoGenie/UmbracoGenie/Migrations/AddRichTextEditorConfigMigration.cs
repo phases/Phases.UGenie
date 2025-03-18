@@ -73,7 +73,7 @@ public class AddRichTextEditorConfigMigration : PackageMigrationBase
                         },
                         {
                             ""Alias"": ""openCustomPopup"",
-                            ""Name"": ""Custom Request"",
+                            ""Name"": ""Edit Generated Text"",
                             ""Mode"": ""Insert""
                         },
                         {
