@@ -1,5 +1,3 @@
-# UGenie - Umbraco GenAI Plugin
-
 <p>
   <a href="LICENSE.md"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="GitHub license"></a> 
   <a href="https://www.nuget.org/packages/UmbracoGenie"><img src="https://img.shields.io/nuget/v/UmbracoGenie.svg" alt="NuGet Version"></a> 
