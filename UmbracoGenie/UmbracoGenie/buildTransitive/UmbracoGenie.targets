@@ -1,0 +1,21 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <UmbracoGenieContentFilesPath>$(MSBuildThisFileDirectory)..\App_Plugins\UmbracoGenie\**\*.*</UmbracoGenieContentFilesPath>
+  </PropertyGroup>
+
+  <Target Name="CopyUmbracoGenieAssets" BeforeTargets="BeforeBuild">
+    <ItemGroup>
+      <UmbracoGenieContentFiles Include="$(UmbracoGenieContentFilesPath)" />
+    </ItemGroup>
+    <Message Text="Copying UmbracoGenie files: $(UmbracoGenieContentFilesPath) - #@(UmbracoGenieContentFiles->Count()) files" Importance="high" />
+    <Copy SourceFiles="@(UmbracoGenieContentFiles)" DestinationFiles="@(UmbracoGenieContentFiles->'$(MSBuildProjectDirectory)\App_Plugins\UmbracoGenie\%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+  </Target>
+
+  <Target Name="ClearUmbracoGenieAssets" BeforeTargets="Clean">
+    <ItemGroup>
+      <UmbracoGenieDir Include="$(MSBuildProjectDirectory)\App_Plugins\UmbracoGenie\" />
+    </ItemGroup>
+    <Message Text="Clear old UmbracoGenie data" Importance="high" />
+    <RemoveDir Directories="@(UmbracoGenieDir)" />
+  </Target>
+</Project>

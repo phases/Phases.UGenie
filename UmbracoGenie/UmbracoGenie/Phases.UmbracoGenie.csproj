@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<ContentTargetFolders>.</ContentTargetFolders>
+		<NoWarn>SKEXP0001;SKEXP0010;SKEXP0020;SKEXP0050;SKEXP0070</NoWarn>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<PackageId>UmbracoGenie</PackageId>
+		<Product>UGenie</Product>
+		<Title>UGenie</Title>
+		<Description>GenAI plugin for Umbraco backoffice -- content, image generation with SemanticKernel Connectors</Description>
+		<PackageTags>umbraco plugin package</PackageTags>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<Authors>Afreed</Authors>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<Version>1.7.7</Version>
+		<PackageIcon>Assets/logo.png</PackageIcon>
+		<SignAssembly>False</SignAssembly>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.SemanticKernel.Connectors.HuggingFace" Version="1.37.0-preview" />
+		<PackageReference Include="Umbraco.Cms.Web.Website" Version="13.6.0" />
+		<PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="13.6.0" />
+		<PackageReference Include="Microsoft.SemanticKernel" Version="1.37.0" />
+		<PackageReference Include="Microsoft.SemanticKernel.Connectors.Google" Version="1.37.0-alpha" />
+		<PackageReference Include="Microsoft.SemanticKernel.Connectors.Ollama" Version="1.37.0-alpha" />
+		<PackageReference Include="Microsoft.SemanticKernel.Connectors.OpenAI" Version="1.37.0" />
+		<PackageReference Include="Microsoft.SemanticKernel.Plugins.Core" Version="1.37.0-alpha" />
+		<PackageReference Include="Microsoft.SemanticKernel.Plugins.Memory" Version="1.37.0-alpha" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="App_Plugins\UmbracoGenie\**" ExcludeFromSingleFile="true" CopyToPublishDirectory="Always" />
+		<None Include="buildTransitive\**" Pack="true" PackagePath="buildTransitive" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="Assets/logo.png">
+	    <PackagePath>\</PackagePath>
+	    <Pack>True</Pack>
+	  </None>
+	</ItemGroup>
+</Project>

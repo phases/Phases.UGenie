@@ -1,0 +1,40 @@
+# Build Folders (you can keep bin if needed, but obj is always generated)
+bin/
+obj/
+
+# Visual Studio temporary files
+.vs/
+*.user
+*.suo
+*.cache
+*.log
+
+# Visual Studio Code settings
+.vscode/
+
+# Build results
+*.dll
+*.exe
+*.pdb
+*.cache
+*.config
+*.app
+
+# NuGet packages
+*.nupkg
+packages/
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# Files built by Visual Studio
+TestResults/
+AppPackages/
+BundleArtifacts/
+Project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Others
+*.vspscc
+*.vssscc

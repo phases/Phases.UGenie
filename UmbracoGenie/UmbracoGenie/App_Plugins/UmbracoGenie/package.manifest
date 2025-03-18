@@ -1,0 +1,26 @@
+{
+  "id": "UmbracoGenie",
+  "name": "UmbracoGenie",
+  "allowPackageTelemetry": true,
+  "propertyEditors": [
+    {
+      "alias": "CustomImagePicker",
+      "name": "Custom Image Picker with AI",
+      "icon": "icon-picture",
+      "group": "media",
+      "editor": {
+        "view": "/App_Plugins/UmbracoGenie/CustomImagePicker/customImagePicker.html"
+      }
+    }
+  ],
+  "javascript": [
+    "/App_Plugins/UmbracoGenie/CustomImagePicker/customImagePicker.controller.js",
+    "/App_Plugins/UmbracoGenie/CustomImagePicker/aiPicker.controller.js",
+    "~/App_Plugins/UmbracoGenie/BackOffice/UmbracoGenieAlias/genie.js",
+    "~/App_Plugins/UmbracoGenie/BackOffice/UmbracoGenieAlias/genie.controller.js",
+    "~/App_Plugins/UmbracoGenie/BackOffice/UmbracoGenieAlias/genie.service.js"
+  ],
+  "css": [
+    "~/App_Plugins/UmbracoGenie/BackOffice/UmbracoGenieAlias/genie.css"
+  ]
+}

@@ -1,0 +1,72 @@
+<div class="container" ng-controller="ConfigController">
+    <div class="dashboard-header">
+        <div>
+            <h1 class="dashboard-title">Genie Model Configuration</h1>
+            <p class="description">Select your preferred models for text and image generation</p>
+        </div>
+    </div>
+
+    <div class="grid">
+        <!-- Text Generation Model -->
+        <div class="panel">
+            <div class="panel-header">
+                <h2 class="panel-title">Text Generation</h2>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Select Text Model</label>
+                <select class="form-select" ng-model="selectedTextModel"
+                        ng-options="model.name for model in textModels">
+                    <option value="">-- Select a text generation model --</option>
+                </select>
+
+                <div class="model-card" ng-if="selectedTextModel">
+                    <div class="model-card-header">
+                        <div class="model-icon">
+                            <i class="icon icon-document-dashed-line"></i>
+                        </div>
+                        <h3 class="model-name">{{selectedTextModel.name}}</h3>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Model ID:</div>
+                        <div class="detail-value">{{selectedTextModel.modelId}}</div>
+                    </div>
+                    <div class="detail-item" ng-if="selectedTextModel.endpoint">
+                        <div class="detail-label">Endpoint:</div>
+                        <div class="detail-value">{{selectedTextModel.endpoint}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Image Generation Model -->
+        <div class="panel">
+            <div class="panel-header">
+                <h2 class="panel-title">Image Generation</h2>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Select Image Model</label>
+                <select class="form-select" ng-model="selectedImageModel"
+                        ng-options="model.name for model in imageModels">
+                    <option value="">-- Select an image generation model --</option>
+                </select>
+
+                <div class="model-card" ng-if="selectedImageModel">
+                    <div class="model-card-header">
+                        <div class="model-icon">
+                            <i class="icon icon-picture"></i>
+                        </div>
+                        <h3 class="model-name">{{selectedImageModel.name}}</h3>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Model ID:</div>
+                        <div class="detail-value">{{selectedImageModel.modelId}}</div>
+                    </div>
+                    <div class="detail-item" ng-if="selectedImageModel.endpoint">
+                        <div class="detail-label">Endpoint:</div>
+                        <div class="detail-value">{{selectedImageModel.endpoint}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,73 @@
+﻿﻿<div ng-controller="apiPicker.controller as vm" class="ai-media-generator">
+
+    <umb-editor-view>
+
+        <umb-editor-header name="model.title"
+                           name-locked="true"
+                           hide-alias="true"
+                           hide-icon="true"
+                           hide-description="true">
+        </umb-editor-header>
+
+        <umb-editor-container style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center;">
+
+            <div auto-scale style="display: flex; align-items: center; position: relative; width: 100%; max-width: 600px; margin-bottom: 15px; position: absolute; top: 20px; left: 21px;" class="ng-scope">
+                <i class="icon-wand" style="position: absolute; left: 10px; color: #aaa; pointer-events: none; z-index: 9999; margin-top: -5px; "></i>
+                <input type="text" id="imagegeneration" ng-model="model.prompt" autocomplete="off"
+                       class="umb-property-editor umb-textstring textstring"
+                       ng-required="model.validation.mandatory"
+                       placeholder="Type your imagination..."
+                       ng-trim="false" ng-model-options="{ debounce: 500 }"
+                       style="padding-left: 30px;  flex: 1; box-sizing: border-box; margin-bottom: 0px;" />
+
+                <umb-button action="generate()"
+                            type="button"
+                            button-style="action"
+                            state="vm.buttonState"
+                            shortcut="enter"
+                            label="Generate"
+                            disabled="vm.buttonState === 'busy'"
+                            style="margin-left: 10px;">
+                </umb-button>
+            </div>
+
+            <div style="width: 100%;text-align: center;" ng-if="model.loading">
+                <umb-load-indicator style="margin-top: 40px;">
+                </umb-load-indicator>
+                <span style="position: absolute;top: 50%;transform: translate(-50%, -50%);left: 50%;">image generating please wait..</span>
+            </div>
+            <div style="width: 100%;text-align: center;" ng-if="!model.loading && !model.imageUrl">
+                <span style="position: absolute;top: 50%;transform: translate(-50%, -50%);left: 50%;">Please generate image</span>
+                <span style="position: absolute;top: 53%;transform: translate(-50%, -50%);left: 50%;">(Generated image will be show here)</span>
+            </div>
+
+            <div class="results" ng-if="!model.loading && model.imageUrl">
+                <img class="animate-show" style="display: block;margin: 0 auto;max-width: 50%;" fade-in ng-src="{{model.imageUrl}}" alt="Generated Image" />
+            </div>
+
+
+        </umb-editor-container>
+
+        <umb-editor-footer>
+            <umb-editor-footer-content-left>
+                <umb-button action="close()"
+                            button-style="link"
+                            shortcut="esc"
+                            label-key="general_close"
+                            type="button">
+                </umb-button>
+            </umb-editor-footer-content-left>
+            <umb-editor-footer-content-right>
+
+                <umb-button action="submit(model.imageUrl)"
+                            button-style="primary"
+                            shortcut="esc"
+                            label="Confirm"
+                            type="button">
+                </umb-button>
+            </umb-editor-footer-content-right>
+        </umb-editor-footer>
+
+    </umb-editor-view>
+
+</div>

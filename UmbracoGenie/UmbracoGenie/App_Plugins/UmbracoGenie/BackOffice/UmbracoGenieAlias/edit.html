@@ -1,0 +1,35 @@
+﻿<div ng-controller="Genie.Controller as vm">
+    <form name="genieForm" val-form-manager novalidate>
+        <umb-editor-view>
+            <umb-editor-header
+                name="vm.content.name"
+                description="dadasfadsad"
+                description-locked="true"
+                name-locked="true"
+                hide-alias="true"
+                hide-icon="true"
+                navigation="vm.content.navigation">
+            </umb-editor-header>
+
+            <umb-editor-container>
+                <umb-editor-sub-views
+                    sub-views="vm.content.navigation"
+                    model="vm.content">
+                </umb-editor-sub-views>
+            </umb-editor-container>
+
+            <umb-editor-footer>
+                <umb-editor-footer-content-right>
+                    <umb-button
+                        type="button"
+                        button-style="success"
+                        label="Save"
+                        icon="icon-check"
+                        action="vm.save()"
+                        disabled="!vm.hasChanges">
+                    </umb-button>
+                </umb-editor-footer-content-right>
+            </umb-editor-footer>
+        </umb-editor-view>
+    </form>
+</div>

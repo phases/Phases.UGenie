@@ -1,0 +1,104 @@
+<div class="container" ng-controller="ConfigController">
+    <div class="dashboard-header">
+        <div>
+            <h1 class="dashboard-title">Image Models Configuration</h1>
+            <p class="description">Configure your image generation model settings</p>
+        </div>
+    </div>
+
+    <div class="grid">
+        <!-- Left column - List of models -->
+        <div class="panel">
+            <div class="panel-header">
+                <h2 class="panel-title">Available Models</h2>
+            </div>
+            <div class="form-group">
+                <ul class="model-list">
+                    <li class="model-card" 
+                        ng-repeat="service in imageModels"
+                        ng-class="{'active': selectedService === service.name}"
+                        ng-click="selectService(service.name)">
+                        <div class="model-card-header">
+                            <div class="model-icon">
+                                <i class="icon icon-picture"></i>
+                            </div>
+                            <h3 class="model-name">{{service.name}}</h3>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal-overlay" ng-if="selectedService">
+        <div class="modal-container">
+            <div ng-repeat="service in imageModels" ng-if="selectedService === service.name">
+                <div class="modal-header">
+                    <h2 class="panel-title">{{service.name}}</h2>
+                    <div>
+                        <button class="btn umb-button__button btn-success"
+                                ng-click="toggleEdit(service, $event)">
+                            <i class="icon" ng-class="{'icon-check': editMode[service.name], 'icon-edit': !editMode[service.name]}"></i>
+                            {{ editMode[service.name] ? 'Save' : 'Edit' }}
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="modal-content">
+                    <div class="form-group">
+                        <label class="form-label">Model ID *</label>
+                        <span class="form-helper">The identifier for this model (e.g., dall-e-3)</span>
+                        <div ng-if="!editMode[service.name]" class="detail-value">
+                            {{ service.modelId }}
+                        </div>
+                        <input ng-if="editMode[service.name]"
+                               type="text"
+                               class="form-select"
+                               ng-model="service.modelId"
+                               placeholder="Enter model ID">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">API Key *</label>
+                        <span class="form-helper">Your authentication key for the service</span>
+                        <div ng-if="!editMode[service.name]" class="detail-value">
+                            {{ showFullKey[service.name] ? service.apiKey : maskApiKey(service.apiKey) }}
+                            <button class="btn-reset"
+                                    style="margin-left: 10px"
+                                    ng-click="toggleKey(service.name, $event)">
+                                <i class="icon icon-eye" ng-class="{'icon-rotate': showFullKey[service.name]}"></i>
+                            </button>
+                        </div>
+                        <input ng-if="editMode[service.name]"
+                               type="text"
+                               class="form-select"
+                               ng-model="service.apiKey"
+                               placeholder="Enter API key">
+                    </div>
+
+                    <div class="form-group" ng-if="service.endpoint !== undefined">
+                        <label class="form-label">Service Endpoint</label>
+                        <span class="form-helper">The URL endpoint for the service (if required)</span>
+                        <div ng-if="!editMode[service.name]" class="detail-value">
+                            {{ service.endpoint }}
+                        </div>
+                        <input ng-if="editMode[service.name]"
+                               type="text"
+                               class="form-select"
+                               ng-model="service.endpoint"
+                               placeholder="Enter endpoint URL">
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn umb-button__button btn-info"
+                            ng-click="selectService(null)">
+                        <i class="icon icon-delete"></i>
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
