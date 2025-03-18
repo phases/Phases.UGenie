@@ -88,10 +88,8 @@ Below are some screenshots showing the UGenie plugin in action:
 *Image generation using AI in Umbraco.*
 
 ## Demo Video
-
 Watch a demo of UGenie in action:
-
-[![Watch the demo video](./UmbracoGenie/UmbracoGenie/Assets/Screenshots/UGenieScreenshot9.png)](./UmbracoGenie/UmbracoGenie/Assets/Screenshots/UGenieScreenRecoding.mp4)
+[![Watch the demo video](https://img.youtube.com/vi/_QWEMU5rsK8/0.jpg)](https://youtu.be/_QWEMU5rsK8)
 
 Click the thumbnail above to watch the demo video of UGenie generating content and images.
 
