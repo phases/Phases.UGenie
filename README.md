@@ -1,5 +1,11 @@
 # UGenie - Umbraco GenAI Plugin
 
+<p>
+  <a href="LICENSE.md"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="GitHub license"></a> 
+  <a href="https://www.nuget.org/packages/UmbracoGenie"><img src="https://img.shields.io/nuget/v/UmbracoGenie.svg" alt="NuGet Version"></a> 
+  <a href="https://www.nuget.org/packages/UmbracoGenie"><img src="https://img.shields.io/nuget/dt/UmbracoGenie.svg" alt="NuGet Downloads"></a>
+</p>
+
 UGenie is a powerful GenAI plugin for Umbraco backoffice, designed to enhance content creation and management. It integrates seamlessly with Umbraco's rich text editor (RTE) and standard text editor to provide AI-powered content generation, text editing, and image generation. Powered by Microsoft's Semantic Kernel Connectors, it leverages multiple AI services to help you create and manage content more efficiently.
 
 ## Features
