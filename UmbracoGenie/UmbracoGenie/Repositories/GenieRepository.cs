@@ -41,7 +41,7 @@ namespace Phases.UmbracoGenie.Repositories
                             new TextModelDto { Name = "OpenAI", ModelId = "gpt-3.5-turbo", ApiKey = "", Endpoint = "" },
                             new TextModelDto { Name = "Gemini Pro", ModelId = "gemini-pro", ApiKey = "" },
                             new TextModelDto { Name = "Ollama", ModelId = "llama2", Endpoint = "http://localhost:11434" },
-                            new TextModelDto { Name = "HuggingFace", ModelId = "bigscience/bloom", ApiKey = "", Endpoint = "https://api-inference.huggingface.co/models" }
+                            //new TextModelDto { Name = "HuggingFace", ModelId = "bigscience/bloom", ApiKey = "", Endpoint = "https://api-inference.huggingface.co/models" }
                         },
                         ImageModels = new List<ImageModelDto>
                         {
@@ -117,7 +117,7 @@ namespace Phases.UmbracoGenie.Repositories
                     },
                     new TextModelDto
                     {
-                        Name = "Gemini Pro",
+                        Name = "Gemini",
                         ModelId = dbModel.GeminiTextModelName,
                         ApiKey = dbModel.GeminiTextModelAPIKey
                     },
@@ -128,13 +128,13 @@ namespace Phases.UmbracoGenie.Repositories
                         ApiKey = dbModel.OllamaTextModelAPIKey,
                         Endpoint = dbModel.OllamaTextEndpoint
                     },
-                    new TextModelDto
-                    {
-                        Name = "HuggingFace",
-                        ModelId = dbModel.HuggingFaceTextModelName,
-                        ApiKey = dbModel.HuggingFaceTextModelAPIKey,
-                        Endpoint = dbModel.HuggingFaceTextEndpoint
-                    }
+                    //new TextModelDto
+                    //{
+                    //    Name = "HuggingFace",
+                    //    ModelId = dbModel.HuggingFaceTextModelName,
+                    //    ApiKey = dbModel.HuggingFaceTextModelAPIKey,
+                    //    Endpoint = dbModel.HuggingFaceTextEndpoint
+                    //}
                 },
                 ImageModels = new List<ImageModelDto>
                 {
@@ -188,7 +188,7 @@ namespace Phases.UmbracoGenie.Repositories
                 dbModel.OpenAITextEndpoint = openAI.Endpoint;
             }
 
-            var gemini = dto.TextModels?.FirstOrDefault(m => m.Name == "Gemini Pro");
+            var gemini = dto.TextModels?.FirstOrDefault(m => m.Name == "Gemini");
             if (gemini != null)
             {
                 dbModel.GeminiTextModelName = gemini.ModelId;
@@ -203,13 +203,13 @@ namespace Phases.UmbracoGenie.Repositories
                 dbModel.OllamaTextEndpoint = ollama.Endpoint;
             }
 
-            var huggingFace = dto.TextModels?.FirstOrDefault(m => m.Name == "HuggingFace");
-            if (huggingFace != null)
-            {
-                dbModel.HuggingFaceTextModelName = huggingFace.ModelId;
-                dbModel.HuggingFaceTextModelAPIKey = huggingFace.ApiKey;
-                dbModel.HuggingFaceTextEndpoint = huggingFace.Endpoint;
-            }
+            //var huggingFace = dto.TextModels?.FirstOrDefault(m => m.Name == "HuggingFace");
+            //if (huggingFace != null)
+            //{
+            //    dbModel.HuggingFaceTextModelName = huggingFace.ModelId;
+            //    dbModel.HuggingFaceTextModelAPIKey = huggingFace.ApiKey;
+            //    dbModel.HuggingFaceTextEndpoint = huggingFace.Endpoint;
+            //}
 
             // Update Image Models
             var openAIImage = dto.ImageModels?.FirstOrDefault(m => m.Name == "OpenAI");

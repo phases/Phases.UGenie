@@ -38,7 +38,7 @@
                     endpoint: ''
                 },
                 {
-                    name: 'Gemini Pro',
+                    name: 'Gemini',
                     modelId: 'gemini-pro',
                     apiKey: ''
                 },
@@ -47,12 +47,12 @@
                     modelId: 'llama2',
                     endpoint: 'http://localhost:11434'
                 },
-                {
-                    name: 'HuggingFace',
-                    model: 'bigscience/bloom',
-                    endpoint: 'https://api-inference.huggingface.co/models',
-                    apiKey: ''
-                }
+                //{
+                //    name: 'HuggingFace',
+                //    model: 'bigscience/bloom',
+                //    endpoint: 'https://api-inference.huggingface.co/models',
+                //    apiKey: ''
+                //}
             ],
             imageModels: [
                 {

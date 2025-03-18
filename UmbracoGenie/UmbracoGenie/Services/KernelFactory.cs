@@ -56,7 +56,7 @@ namespace Phases.UmbracoGenie.Services
                                 ollamaEndpoint);
                         }
                         break;
-                    case "Gemini Pro":
+                    case "Gemini":
                         if (!string.IsNullOrEmpty(config.SelectedTextModel.ApiKey))
                         {
                             builder.Services.AddGoogleAIGeminiChatCompletion(
@@ -65,17 +65,17 @@ namespace Phases.UmbracoGenie.Services
 
                         }
                         break;
-                    case "HuggingFace":
-                        if (!string.IsNullOrEmpty(config.SelectedTextModel.ApiKey))
-                        {
-                            var endpoint = new Uri(config?.SelectedTextModel?.Endpoint);
-                            builder.Services.AddHuggingFaceChatCompletion(
-                                config.SelectedTextModel.ModelId,
-                                endpoint: endpoint,
-                                apiKey: config.SelectedTextModel.ApiKey);
+                    //case "HuggingFace":
+                    //    if (!string.IsNullOrEmpty(config.SelectedTextModel.ApiKey))
+                    //    {
+                    //        var endpoint = new Uri(config?.SelectedTextModel?.Endpoint);
+                    //        builder.Services.AddHuggingFaceChatCompletion(
+                    //            config.SelectedTextModel.ModelId,
+                    //            endpoint: endpoint,
+                    //            apiKey: config.SelectedTextModel.ApiKey);
 
-                        }
-                        break;
+                    //    }
+                    //    break;
                 }
             }
 
