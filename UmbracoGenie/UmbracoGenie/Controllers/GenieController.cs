@@ -10,16 +10,19 @@ using Umbraco.Cms.Web.Common.Authorization;
 using Umbraco.Cms.Web.Common.Controllers;
 using Phases.UmbracoGenie.Models.Dtos;
 using Phases.UmbracoGenie.Services.Interfaces;
+using Microsoft.Extensions.Logging;
 
 namespace Phases.UmbracoGenie.Controllers
 {
     public class GenieController : UmbracoAuthorizedApiController
     {
         private readonly IGenieService _genieService;
+         private readonly ILogger<GenieController> _logger;
 
-        public GenieController(IGenieService genieService)
+        public GenieController(IGenieService genieService,ILogger<GenieController> logger)
         {
             _genieService = genieService;
+            _logger = logger;
         }
 
         [HttpPost]
@@ -27,13 +30,20 @@ namespace Phases.UmbracoGenie.Controllers
         public async Task<IActionResult> SaveConfiguration([FromBody] GenieConfigurationDto configuration)
         {
             if (configuration == null)
+            {
+                _logger.LogWarning("SaveConfiguration called with null configuration");
                 return BadRequest("Configuration cannot be null");
-
+            }
+            _logger.LogInformation("Saving configuration...");
             var result = await _genieService.SaveConfigurationAsync(configuration);
 
             if (result)
+            {
+                _logger.LogInformation("Configuration saved successfully");
                 return Ok(new { success = true, message = "Configuration saved successfully" });
+            }
 
+            _logger.LogError("Failed to save configuration");
             return BadRequest(new { success = false, message = "Failed to save configuration" });
         }
 
@@ -43,11 +53,14 @@ namespace Phases.UmbracoGenie.Controllers
         {
             try
             {
+                _logger.LogInformation("Fetching configuration...");
                 var config = await _genieService.GetConfigurationAsync();
+                _logger.LogInformation("Configuration fetched successfully");
                 return Ok(config);
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Failed to load configuration");
                 return BadRequest(new { success = false, message = "Failed to load configuration" });
             }
         }

@@ -11,7 +11,7 @@
 		<PackageId>UmbracoGenie</PackageId>
 		<Product>UGenie</Product>
 		<Title>UGenie</Title>
-		<Description>GenAI plugin for Umbraco backoffice -- content, image generation with SemanticKernel Connectors</Description>
+		<Description>GenAI plugin for Umbraco backoffice, provides AI-powered content generation, text editing, and image generation. Powered by Microsoft's Semantic Kernel Connectors</Description>
 		<PackageTags>umbraco plugin package</PackageTags>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<Authors>Afreed</Authors>
