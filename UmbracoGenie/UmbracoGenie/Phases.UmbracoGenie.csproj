@@ -16,15 +16,18 @@
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<Authors>Afreed</Authors>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<Version>1.9.3</Version>
+		<Version>1.0.0</Version>
 		<PackageIcon>Assets/logo.png</PackageIcon>
 		<SignAssembly>False</SignAssembly>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<RepositoryUrl>https://github.com/phases/Phases.UGenie</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<Copyright>phases@2025</Copyright>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.SemanticKernel.Connectors.HuggingFace" Version="1.37.0-preview" />
-		<PackageReference Include="Umbraco.Cms.Web.Website" Version="13.7.2" />
-		<PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="13.7.2" />
+		<PackageReference Include="Umbraco.Cms.Web.Website" Version="13.0.0-*" />
+		<PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="13.0.0-*" />
 		<PackageReference Include="Microsoft.SemanticKernel" Version="1.37.0" />
 		<PackageReference Include="Microsoft.SemanticKernel.Connectors.Google" Version="1.37.0-alpha" />
 		<PackageReference Include="Microsoft.SemanticKernel.Connectors.Ollama" Version="1.37.0-alpha" />
@@ -36,6 +39,13 @@
 	<ItemGroup>
 		<Content Include="App_Plugins\UmbracoGenie\**" ExcludeFromSingleFile="true" CopyToPublishDirectory="Always" />
 		<None Include="buildTransitive\**" Pack="true" PackagePath="buildTransitive" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="..\..\README.md">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
 	</ItemGroup>
 
 	<ItemGroup>
