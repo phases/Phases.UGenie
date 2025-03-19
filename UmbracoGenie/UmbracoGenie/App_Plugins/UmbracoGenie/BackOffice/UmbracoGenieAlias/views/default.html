@@ -1,70 +1,172 @@
-<div class="container" ng-controller="ConfigController">
-    <div class="dashboard-header">
-        <div>
-            <h1 class="dashboard-title">Genie Model Configuration</h1>
-            <p class="description">Select your preferred models for text and image generation</p>
-        </div>
-    </div>
-
-    <div class="grid">
-        <!-- Text Generation Model -->
-        <div class="panel">
-            <div class="panel-header">
-                <h2 class="panel-title">Text Generation</h2>
+<div class="umbraco-genie">
+    <div class="container" ng-controller="ConfigController">
+        <div class="dashboard-header">
+            <div>
+                <h1 class="dashboard-title">Genie Model Configuration</h1>
+                <p class="description">Select your preferred models for text and image generation</p>
             </div>
-            <div class="form-group">
-                <label class="form-label">Select Text Model</label>
-                <select class="form-select" ng-model="selectedTextModel"
-                        ng-options="model.name for model in textModels">
-                    <option value="">-- Select a text generation model --</option>
-                </select>
+        </div>
 
-                <div class="model-card" ng-if="selectedTextModel">
-                    <div class="model-card-header">
-                        <div class="model-icon">
-                            <i class="icon icon-document-dashed-line"></i>
+        <div class="grid">
+            <!-- Text Generation Model -->
+            <div class="panel">
+                <div class="panel-header">
+                    <h2 class="panel-title">Text Generation</h2>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Select Text Model</label>
+                    <select class="form-select" ng-model="selectedTextModel"
+                            ng-options="model.name for model in textModels">
+                        <option value="">-- Select a text generation model --</option>
+                    </select>
+
+                    <div class="model-card" ng-if="selectedTextModel">
+                        <div class="model-card-header">
+                            <div class="model-icon">
+                                <i class="icon icon-document-dashed-line"></i>
+                            </div>
+                            <h3 class="model-name">{{selectedTextModel.name}}</h3>
                         </div>
-                        <h3 class="model-name">{{selectedTextModel.name}}</h3>
-                    </div>
-                    <div class="detail-item">
-                        <div class="detail-label">Model ID:</div>
-                        <div class="detail-value">{{selectedTextModel.modelId}}</div>
-                    </div>
-                    <div class="detail-item" ng-if="selectedTextModel.endpoint">
-                        <div class="detail-label">Endpoint:</div>
-                        <div class="detail-value">{{selectedTextModel.endpoint}}</div>
+                        <div class="detail-item">
+                            <div class="detail-label">Model ID:</div>
+                            <div class="detail-value">{{selectedTextModel.modelId}}</div>
+                        </div>
+                        <div class="detail-item" ng-if="selectedTextModel.endpoint">
+                            <div class="detail-label">Endpoint:</div>
+                            <div class="detail-value">{{selectedTextModel.endpoint}}</div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Image Generation Model -->
-        <div class="panel">
-            <div class="panel-header">
-                <h2 class="panel-title">Image Generation</h2>
-            </div>
-            <div class="form-group">
-                <label class="form-label">Select Image Model</label>
-                <select class="form-select" ng-model="selectedImageModel"
-                        ng-options="model.name for model in imageModels">
-                    <option value="">-- Select an image generation model --</option>
-                </select>
+            <!-- Image Generation Model -->
+            <div class="panel">
+                <div class="panel-header">
+                    <h2 class="panel-title">Image Generation</h2>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Select Image Model</label>
+                    <select class="form-select" ng-model="selectedImageModel"
+                            ng-options="model.name for model in imageModels">
+                        <option value="">-- Select an image generation model --</option>
+                    </select>
 
-                <div class="model-card" ng-if="selectedImageModel">
-                    <div class="model-card-header">
-                        <div class="model-icon">
-                            <i class="icon icon-picture"></i>
+                    <div class="model-card" ng-if="selectedImageModel">
+                        <div class="model-card-header">
+                            <div class="model-icon">
+                                <i class="icon icon-picture"></i>
+                            </div>
+                            <h3 class="model-name">{{selectedImageModel.name}}</h3>
                         </div>
-                        <h3 class="model-name">{{selectedImageModel.name}}</h3>
+                        <div class="detail-item">
+                            <div class="detail-label">Model ID:</div>
+                            <div class="detail-value">{{selectedImageModel.modelId}}</div>
+                        </div>
+                        <div class="detail-item" ng-if="selectedImageModel.endpoint">
+                            <div class="detail-label">Endpoint:</div>
+                            <div class="detail-value">{{selectedImageModel.endpoint}}</div>
+                        </div>
                     </div>
-                    <div class="detail-item">
-                        <div class="detail-label">Model ID:</div>
-                        <div class="detail-value">{{selectedImageModel.modelId}}</div>
+                </div>
+            </div>
+
+            <!-- New panel for Genie Textbox Options -->
+            <div class="panel" id="genie-textbox-options">
+                <div class="panel-header">
+                    <h2 class="panel-title">Genie Textbox Options</h2>
+                    <p class="description">Configure additional options for all textboxes and textareas.</p>
+                </div>
+                <style>
+                  .switcher {
+                    background: rgba(65,54,89,.25);
+                    border: rgba(65,54,89,.25);
+                    position: relative;
+                    display: inline-block;
+                    box-sizing: content-box;
+                    overflow: visible;
+                    width: 52px;
+                    height: 30px;
+                    padding: 0;
+                    margin: 0;
+                    border-radius: 20px;
+                    cursor: pointer;
+                    box-shadow: #dfdfdf 0 0 0 0 inset;
+                    transition: .3s ease-out all;
+                    -webkit-transition: .3s ease-out all;
+                    top: -1px;
+                  }
+                  .switcher small {
+                    background: #fff;
+                    border: 2px solid rgba(65,54,89,0);
+                    border-radius: 100%;
+                    width: 22px;
+                    height: 22px;
+                    position: absolute;
+                    top: 2px;
+                    left: 2px;
+                    transition: .3s ease-out all;
+                    -webkit-transition: .3s ease-out all;
+                  }
+                  .switcher.checked {
+                    background: #87bbff;
+                    border-color: #87bbff;
+                    box-shadow: none;
+                  }
+                  .switcher.checked small {
+                    left: 24px;
+                    border: 2px solid rgba(245,193,188,0);
+                  }
+                  .switcher-status {
+                    display: inline-block;
+                    vertical-align: top;
+                    padding: 9px 5px 5px;
+                    transition: color .3s ease-in-out;
+                    -webkit-transition: color .3s ease-in-out;
+                    font-size: 12px;
+                    line-height: 12px;
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                    font-weight: 700;
+                    text-align: center;
+                    color: rgba(65,54,89,.5);
+                  }
+                  .switcher-status.active {
+                    color: rgba(65,54,89,1);
+                  }
+                  /* Updated header styling for Genie Textbox Options */
+                  #genie-textbox-options .panel-header {
+                      display: flex;
+                      flex-direction: column;
+                      align-items: flex-start;
+                  }
+                  #genie-textbox-options .panel-header .panel-title {
+                      color: #413655;
+                      font-size: 20px;
+                      margin-bottom: 5px;
+                  }
+                  #genie-textbox-options .panel-header .description {
+                      font-size: 14px;
+                      color: #666;
+                      margin-top: 0;
+                  }
+                </style>
+                <div class="form-group">
+                    <label class="form-label">Enable For TextBox</label>
+                    <div ng-click="toggleEnableForText('TextBox')" class="switcher" ng-class="{ checked: enableForTextBox }" role="button" tabindex="0">
+                        <small></small>
                     </div>
-                    <div class="detail-item" ng-if="selectedImageModel.endpoint">
-                        <div class="detail-label">Endpoint:</div>
-                        <div class="detail-value">{{selectedImageModel.endpoint}}</div>
+                    <span class="switcher-status" ng-class="{ active: enableForTextBox }">
+                        {{ enableForTextBox ? 'Yes' : 'No' }}
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Enable For TextArea</label>
+                    <div ng-click="toggleEnableForText('TextArea')" class="switcher" ng-class="{ checked: enableForTextArea }" role="button" tabindex="0">
+                        <small></small>
                     </div>
+                    <span class="switcher-status" ng-class="{ active: enableForTextArea }">
+                        {{ enableForTextArea ? 'Yes' : 'No' }}
+                    </span>
                 </div>
             </div>
         </div>

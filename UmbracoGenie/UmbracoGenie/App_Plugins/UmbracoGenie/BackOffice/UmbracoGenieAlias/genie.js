@@ -1,7 +1,7 @@
 ﻿angular.module('umbraco')
     .controller('ConfigController', function ($scope, $timeout) {
         // Listen for configuration loaded event
-        $scope.$on('configurationLoaded', function(event, content) {
+        $scope.$on('configurationLoaded', function (event, content) {
             // Ensure model properties match the view bindings
             function ensureModelProperties(models) {
                 return models.map(model => ({
@@ -18,7 +18,10 @@
             $scope.imageModels = ensureModelProperties(content.imageModels);
             $scope.selectedTextModel = content.selectedTextModel;
             $scope.selectedImageModel = content.selectedImageModel;
-            
+            // Ensure default values for toggles
+            $scope.enableForTextBox = angular.isDefined(content.enableForTextBox) ? content.enableForTextBox : false;
+            $scope.enableForTextArea = angular.isDefined(content.enableForTextArea) ? content.enableForTextArea : false;
+
             // Update original copies
             $scope.originalTextModels = angular.copy($scope.textModels);
             $scope.originalImageModels = angular.copy($scope.imageModels);
@@ -201,4 +204,25 @@
                 vm.hasChanges = $scope.hasChanges;
             }
         }, true);
+
+        // Add toggle function to ConfigController:
+        $scope.toggleEnableForText = function (option) {
+            if (option === 'TextBox') {
+                $scope.enableForTextBox = !$scope.enableForTextBox;
+                if ($scope.$parent.vm && $scope.$parent.vm.content) {
+                    $scope.$parent.vm.content.enableForTextBox = $scope.enableForTextBox;
+                }
+            } else if (option === 'TextArea') {
+                $scope.enableForTextArea = !$scope.enableForTextArea;
+                if ($scope.$parent.vm && $scope.$parent.vm.content) {
+                    $scope.$parent.vm.content.enableForTextArea = $scope.enableForTextArea;
+                }
+            }
+            $scope.hasChanges = true;
+            // Emit event to update parent controller's configuration
+            $scope.$emit('configUpdated', {
+                enableForTextBox: $scope.enableForTextBox,
+                enableForTextArea: $scope.enableForTextArea
+            });
+        };
     });

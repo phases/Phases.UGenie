@@ -30,5 +30,7 @@ namespace Phases.UmbracoGenie.Models.Dtos
         public ImageModelDto? SelectedImageModel { get; set; }
         public IEnumerable<TextModelDto>? TextModels { get; set; }
         public IEnumerable<ImageModelDto>? ImageModels { get; set; }
+        public bool? enableForTextBox { get; set; }
+        public bool? enableForTextArea { get; set; }
     }
 }

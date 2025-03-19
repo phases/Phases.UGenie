@@ -23,6 +23,7 @@ namespace UmbracoGenie.Controllers
             _imageGenerationService = imageGenerationService;
         }
 
+        #region RTE Endpoints
         [HttpPost]
         public async Task<IActionResult> Generate([FromBody] PromptModel model)
         {
@@ -123,7 +124,80 @@ namespace UmbracoGenie.Controllers
                 return StatusCode(500, "Internal Server Error");
             }
         }
+        #endregion
+        
+        #region Normal Endpoints
+        [HttpPost]
+        public async Task<IActionResult> GenerateNormal([FromBody] PromptModel model)
+        {
+            _logger.LogInformation("Generate called with prompt: {Prompt}", model.Prompt);
+            if (string.IsNullOrWhiteSpace(model.Prompt))
+            {
+                _logger.LogError("Generate: Invalid AI model specified. Prompt was empty.");
+                return BadRequest("Invalid AI model specified");
+            }
+            string systemPrompt = SystemPrompts.GenerateTextPromptNormal;
+            try
+            {
+                var result = await _semanticKernel.GenerateTextAsync(model.Prompt, systemPrompt);
+                _logger.LogInformation("Generate completed successfully.");
+                return new JsonResult(new { text = result });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Generate encountered an error.");
+                return StatusCode(500, "Internal Server Error");
+            }
+        }
 
+        [HttpPost]
+        public async Task<IActionResult> EditGeneratedTextNormal([FromBody] EditPromptModel model)
+        {
+            _logger.LogInformation("EditGeneratedText called with prompt: {Prompt}", model.Prompt);
+            if (string.IsNullOrWhiteSpace(model.Prompt))
+            {
+                _logger.LogError("EditGeneratedText: Invalid AI model specified. Prompt was empty.");
+                return BadRequest("Invalid AI model specified");
+            }
+            var systemPrompt = SystemPrompts.EditTextPromptNormal;
+            try
+            {
+                var result = await _semanticKernel.GenerateTextAsync(model.Prompt, systemPrompt);
+                _logger.LogInformation("EditGeneratedText completed successfully.");
+                return new JsonResult(new { text = result });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "EditGeneratedText encountered an error.");
+                return StatusCode(500, "Internal Server Error");
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ParaphraseNormal([FromBody] PromptModel model)
+        {
+            _logger.LogInformation("Paraphrase called with prompt: {Prompt}", model.Prompt);
+            if (string.IsNullOrWhiteSpace(model.Prompt))
+            {
+                _logger.LogError("Paraphrase: Invalid prompt specified. Prompt was empty.");
+                return BadRequest("Invalid prompt specified");
+            }
+            var systemPrompt = SystemPrompts.ParaphrasePromptNormal;
+            try
+            {
+                var result = await _semanticKernel.GenerateTextAsync(model.Prompt, systemPrompt);
+                _logger.LogInformation("Paraphrase completed successfully.");
+                return new JsonResult(new { text = result });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Paraphrase encountered an error.");
+                return StatusCode(500, "Internal Server Error");
+            }
+        }
+        #endregion
+
+        #region  Vision Endpoints
         [HttpPost]
         public async Task<IActionResult> GenerateImage([FromBody] PromptModel model)
         {
@@ -150,5 +224,6 @@ namespace UmbracoGenie.Controllers
                 return StatusCode(500, "Internal Server Error");
             }
         }
+        #endregion
     }
 }

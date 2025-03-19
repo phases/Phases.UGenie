@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace Phases.UmbracoGenie.Controllers
 {
-    [Tree("settings", "UmbracoGenieAlias", IsSingleNodeTree = true, TreeTitle = "Umbraco Genie", TreeGroup = "UmbracoGenie", SortOrder = 5)]
+    [Tree("settings", "UmbracoGenieAlias", IsSingleNodeTree = true, TreeTitle = "Umbraco Genie", TreeGroup = "UmbracoGenie", SortOrder = 3)]
     [PluginController("umbracoGenie")]
     public class UmbracoGenieTreeController : TreeController
     {

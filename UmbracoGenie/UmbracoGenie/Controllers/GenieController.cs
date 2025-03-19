@@ -17,9 +17,9 @@ namespace Phases.UmbracoGenie.Controllers
     public class GenieController : UmbracoAuthorizedApiController
     {
         private readonly IGenieService _genieService;
-         private readonly ILogger<GenieController> _logger;
+        private readonly ILogger<GenieController> _logger;
 
-        public GenieController(IGenieService genieService,ILogger<GenieController> logger)
+        public GenieController(IGenieService genieService, ILogger<GenieController> logger)
         {
             _genieService = genieService;
             _logger = logger;
@@ -61,6 +61,36 @@ namespace Phases.UmbracoGenie.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Failed to load configuration");
+                return BadRequest(new { success = false, message = "Failed to load configuration" });
+            }
+        }
+
+        [HttpGet]
+        [Route("/umbraco/backoffice/api/Genie/IsGenieTextBoxEnabled")]
+        public async Task<IActionResult> IsGenieTextBoxEnabled()
+        {
+            try
+            {
+                return Ok(await _genieService.GetIsGenieTextBoxEnabled());
+            }
+            catch (Exception ex)
+            {
+                 _logger.LogError(ex, "Failed to load configuration");
+                return BadRequest(new { success = false, message = "Failed to load configuration" });
+            }
+        }
+
+        [HttpGet]
+        [Route("/umbraco/backoffice/api/Genie/IsGenieTextAreaEnabled")]
+        public async Task<IActionResult> IsGenieTextAreaEnabled()
+        {
+            try
+            {
+                return Ok(await _genieService.GetIsGenieTextAreaEnabled());
+            }
+            catch (Exception ex)
+            {
+                 _logger.LogError(ex, "Failed to load configuration");
                 return BadRequest(new { success = false, message = "Failed to load configuration" });
             }
         }

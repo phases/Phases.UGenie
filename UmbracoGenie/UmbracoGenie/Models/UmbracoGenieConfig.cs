@@ -117,5 +117,13 @@ namespace Phases.UmbracoGenie.Models
         [NullSetting(NullSetting = NullSettings.Null)]
         public string? InHouseImageModelEndpoint { get; set; }
 
+        [Column("enableForTextArea")]
+        [NullSetting(NullSetting = NullSettings.Null)]
+        public int? enableForTextArea { get; set; }
+
+        [Column("enableForTextBox")]
+        [NullSetting(NullSetting = NullSettings.Null)]
+        public int? enableForTextBox { get; set; }
+
     }
 }

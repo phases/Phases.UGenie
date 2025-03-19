@@ -18,9 +18,11 @@
     "/App_Plugins/UmbracoGenie/CustomImagePicker/aiPicker.controller.js",
     "~/App_Plugins/UmbracoGenie/BackOffice/UmbracoGenieAlias/genie.js",
     "~/App_Plugins/UmbracoGenie/BackOffice/UmbracoGenieAlias/genie.controller.js",
-    "~/App_Plugins/UmbracoGenie/BackOffice/UmbracoGenieAlias/genie.service.js"
+    "~/App_Plugins/UmbracoGenie/BackOffice/UmbracoGenieAlias/genie.service.js",
+    "~/App_Plugins/UmbracoGenie/GenieTextBox/js/genieTextboxController.js"
   ],
   "css": [
-    "~/App_Plugins/UmbracoGenie/BackOffice/UmbracoGenieAlias/genie.css"
+    "~/App_Plugins/UmbracoGenie/BackOffice/UmbracoGenieAlias/genie.css",
+    "~/App_Plugins/UmbracoGenie/GenieTextBox/css/style.genietextbox.css"
   ]
 }

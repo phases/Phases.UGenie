@@ -11,5 +11,7 @@ namespace Phases.UmbracoGenie.Services.Interfaces
     {
         Task<bool> SaveConfigurationAsync(GenieConfigurationDto configuration);
         Task<GenieConfigurationDto> GetConfigurationAsync();
+        Task<bool> GetIsGenieTextAreaEnabled();
+        Task<bool> GetIsGenieTextBoxEnabled();
     }
 }

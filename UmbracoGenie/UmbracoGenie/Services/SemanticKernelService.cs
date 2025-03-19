@@ -65,6 +65,7 @@ namespace Phases.UmbracoGenie.Services
                     kernel: kernel);
 
                 var response = result.FirstOrDefault()?.Content ?? "No response generated.";
+                response = response.Replace("```html", "").Replace("```", "");
                 _chatHistory.AddAssistantMessage(response);
 
                 return response;

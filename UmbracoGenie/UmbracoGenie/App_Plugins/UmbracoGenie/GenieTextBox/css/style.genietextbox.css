@@ -1,0 +1,268 @@
+.last-value-modal {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 8px;
+    z-index: 1050;
+    width: 300px;
+    background-color: var(--white, #fff);
+    border: 1px solid var(--gray-200, #e0e0e0);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    border-radius: 6px;
+    padding: 16px;
+    font-family: inherit;
+    color: var(--gray-800, #333);
+}
+
+    .last-value-modal h4 {
+        margin: 0 0 12px 0;
+        font-size: 16px;
+        color: var(--gray-900, #202020);
+        border-bottom: 1px solid var(--gray-100, #f0f0f0);
+        padding-bottom: 8px;
+    }
+
+.values-container {
+    max-height: 250px;
+    overflow-y: auto;
+    margin-bottom: 12px;
+}
+
+.value-option {
+    padding: 8px 12px;
+    margin-bottom: 8px;
+    border: 1px solid var(--gray-100, #f0f0f0);
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+    .value-option:hover {
+        background-color: var(--gray-50, #f9f9f9);
+    }
+
+.value-text {
+    font-weight: 500;
+    color: var(--gray-800, #333);
+    cursor: pointer;
+    margin-bottom: 4px;
+    word-break: break-word;
+}
+
+.value-date {
+    font-size: 12px;
+    color: var(--gray-500, #888);
+    font-style: italic;
+}
+
+.no-values {
+    padding: 12px;
+    text-align: center;
+    color: var(--gray-600, #666);
+    font-style: italic;
+}
+
+.last-value-modal button {
+    display: inline-block;
+    background-color: var(--primary, #0078d4);
+    color: #fff;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+    .last-value-modal button:hover {
+        background-color: var(--primary-dark, #005a9e);
+    }
+
+    .last-value-modal button:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(0, 120, 212, 0.25);
+    }
+
+/* Custom icon styling */
+.custom-icon {
+    color: var(--gray-600, #666);
+    transition: color 0.2s ease;
+}
+
+    .custom-icon:hover {
+        color: var(--primary, #0078d4);
+    }
+
+.loader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.last-value-modal {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    z-index: 1000;
+    background: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    min-width: 200px;
+    min-height: 100px;
+    width: 300px;
+    height: auto;
+    max-height: 400px;
+    overflow: auto;
+}
+
+/* Right edge resizer */
+.resizer-e {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 5px;
+    height: 100%;
+    background: transparent;
+    cursor: e-resize;
+}
+
+/* Bottom edge resizer */
+.resizer-s {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: transparent;
+    cursor: s-resize;
+}
+
+/* Corner resizer */
+.resizer-se {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 16px;
+    height: 16px;
+    background: transparent;
+    cursor: se-resize;
+}
+
+    .resizer-se:after {
+        content: "";
+        position: absolute;
+        right: 3px;
+        bottom: 3px;
+        width: 10px;
+        height: 10px;
+        border-right: 2px solid #888;
+        border-bottom: 2px solid #888;
+    }
+
+
+.last-value-modal.fullscreen {
+    position: fixed !important; /* Ensure fixed positioning */
+    width: 90% !important;
+    height: 80% !important;
+    top: 10% !important;
+    left: 5% !important;
+    transform: none !important;
+    max-height: 80vh !important; /* Set a max-height relative to viewport height */
+}
+
+    .last-value-modal.fullscreen .values-container {
+        max-height: calc(80vh - 60px) !important; /* Subtract header height */
+        height: auto !important;
+        flex: 1 !important;
+    }
+
+.rte-content {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+/* 
+   The following global definitions are no longer needed because the
+   shadow DOM encapsulates the styles. Remove or comment out these rules:
+*/
+
+/* Global button styles - remove to avoid leaking styles into the UI */
+/*
+.btn {
+    display: inline-block;
+    background-color: var(--primary, #0078d4);
+    color: #fff;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    margin-right: 5px;
+}
+.btn:hover {
+    background-color: var(--primary-dark, #005a9e);
+}
+
+.genie-btn {
+    display: inline-block;
+    background-color: var(--primary, #0078d4);
+    color: #fff;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    margin: 5px;
+}
+.genie-btn:hover {
+    background-color: var(--primary-dark, #005a9e);
+}
+
+input + .genie-btn,
+textarea + .genie-btn {
+    margin-left: 0;
+}
+*/
+
+/* Global simple popup styles - remove to avoid affecting the rest of the UI */
+/*
+.simple-popup-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 11000;
+}
+.simple-popup-modal {
+    background: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.simple-popup-input {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.simple-popup-submit {
+    align-self: flex-end;
+}
+*/

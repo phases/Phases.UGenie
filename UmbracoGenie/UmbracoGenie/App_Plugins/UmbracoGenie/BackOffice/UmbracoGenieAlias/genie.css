@@ -18,33 +18,33 @@
     --transition: all 0.2s ease;
 }
 
-.container {
+.umbraco-genie .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 16px;
 }
 
-.dashboard-header {
+.umbraco-genie .dashboard-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 16px;
 }
 
-.dashboard-title {
+.umbraco-genie .dashboard-title {
     font-size: 24px;
     font-weight: 700;
     color: var(--text-primary);
     margin: 0;
 }
 
-.description {
+.umbraco-genie .description {
     color: var(--text-secondary);
     margin-top: 6px;
     font-size: 15px;
 }
 
-.panel {
+.umbraco-genie .panel {
     background-color: var(--bg-card);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-sm);
@@ -52,7 +52,7 @@
     margin-bottom: 16px;
 }
 
-.panel-header {
+.umbraco-genie .panel-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -61,24 +61,24 @@
     border-bottom: 1px solid var(--border);
 }
 
-.panel-title {
+.umbraco-genie .panel-title {
     font-size: 18px;
     font-weight: 600;
     color: var(--text-primary);
     margin: 0;
 }
 
-.grid {
+.umbraco-genie .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 16px;
 }
 
-.form-group {
+.umbraco-genie .form-group {
     margin-bottom: 16px;
 }
 
-.form-label {
+.umbraco-genie .form-label {
     display: block;
     font-size: 15px;
     font-weight: 500;
@@ -86,14 +86,14 @@
     margin-bottom: 8px;
 }
 
-.form-helper {
+.umbraco-genie .form-helper {
     display: block;
     font-size: 13px;
     color: var(--text-secondary);
     margin-bottom: 8px;
 }
 
-.form-select {
+.umbraco-genie .form-select {
     width: 100%;
     padding: 10px 14px;
     font-size: 15px;
@@ -107,7 +107,7 @@
     transition: var(--transition);
 }
 
-.model-card {
+.umbraco-genie .model-card {
     border: 1px solid var(--border);
     border-radius: var(--radius-md);
     padding: 12px;
@@ -116,18 +116,18 @@
     transition: var(--transition);
 }
 
-.model-card:hover {
+.umbraco-genie .model-card:hover {
     box-shadow: var(--shadow-sm);
 }
 
-.model-card-header {
+.umbraco-genie .model-card-header {
     display: flex;
     align-items: center;
     gap: 12px;
     margin-bottom: 12px;
 }
 
-.model-icon {
+.umbraco-genie .model-icon {
     font-size: 16px;
     width: 32px;
     height: 32px;
@@ -139,31 +139,31 @@
     border-radius: var(--radius-sm);
 }
 
-.model-name {
+.umbraco-genie .model-name {
     font-size: 16px;
     font-weight: 600;
     color: var(--text-primary);
     margin: 0;
 }
 
-.detail-item {
+.umbraco-genie .detail-item {
     display: flex;
     margin-bottom: 4px;
     font-size: 13px;
 }
 
-.detail-label {
+.umbraco-genie .detail-label {
     font-weight: 500;
     width: 70px;
     color: var(--text-secondary);
 }
 
-.detail-value {
+.umbraco-genie .detail-value {
     color: var(--text-primary);
     word-break: break-all;
 }
 
-.badge {
+.umbraco-genie .badge {
     display: inline-flex;
     align-items: center;
     padding: 4px 8px;
@@ -175,14 +175,14 @@
     margin-left: 8px;
 }
 
-.tabs {
+.umbraco-genie .tabs {
     display: flex;
     gap: 2px;
     margin-bottom: 24px;
     border-bottom: 1px solid var(--border);
 }
 
-.tab {
+.umbraco-genie .tab {
     padding: 12px 20px;
     font-size: 15px;
     font-weight: 500;
@@ -194,32 +194,32 @@
     transition: var(--transition);
 }
 
-.tab.active {
+.umbraco-genie .tab.active {
     color: var(--primary);
     border-bottom-color: var(--primary);
 }
 
-.model-list {
+.umbraco-genie .model-list {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-.model-list .model-card {
+.umbraco-genie .model-list .model-card {
     cursor: pointer;
     margin-bottom: 12px;
 }
 
-.model-list .model-card:hover {
+.umbraco-genie .model-list .model-card:hover {
     transform: translateY(-1px);
 }
 
-.model-list .model-card.active {
+.umbraco-genie .model-list .model-card.active {
     border-color: var(--primary);
     background-color: #eef2ff;
 }
 
-.btn-reset {
+.umbraco-genie .btn-reset {
     background: none;
     border: none;
     padding: 4px 8px;
@@ -228,22 +228,22 @@
     border-radius: var(--radius-sm);
 }
 
-.btn-reset:hover {
+.umbraco-genie .btn-reset:hover {
     background-color: var(--secondary);
 }
 
 @media (max-width: 768px) {
-    .grid {
+    .umbraco-genie .grid {
         grid-template-columns: 1fr;
     }
 
-    .dashboard-header {
+    .umbraco-genie .dashboard-header {
         flex-direction: column;
         align-items: flex-start;
     }
 }
 
-.modal-overlay {
+.umbraco-genie .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -256,7 +256,7 @@
     z-index: 1000;
 }
 
-.modal-container {
+.umbraco-genie .modal-container {
     background-color: var(--bg-card);
     border-radius: var(--radius-lg);
     width: 90%;
@@ -266,7 +266,7 @@
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
-.modal-header {
+.umbraco-genie .modal-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -274,11 +274,11 @@
     border-bottom: 1px solid var(--border);
 }
 
-.modal-content {
+.umbraco-genie .modal-content {
     padding: 24px;
 }
 
-.modal-footer {
+.umbraco-genie .modal-footer {
     padding: 16px 24px;
     border-top: 1px solid var(--border);
     display: flex;

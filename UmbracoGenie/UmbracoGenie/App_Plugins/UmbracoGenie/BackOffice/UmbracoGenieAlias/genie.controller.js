@@ -76,19 +76,28 @@
                 }
             ],
             selectedTextModel: null,
-            selectedImageModel: null
+            selectedImageModel: null,
+            // New toggle options with default values
+            enableForTextBox: false,
+            enableForTextArea: false
         };
 
         // Track original selections
         vm.content.originalSelectedTextModel = vm.content.selectedTextModel;
         vm.content.originalSelectedImageModel = vm.content.selectedImageModel;
+        // Track original toggle values
+        vm.content.originalEnableForTextBox = vm.content.enableForTextBox;
+        vm.content.originalEnableForTextArea = vm.content.enableForTextArea;
 
         vm.save = function () {
             var config = {
                 selectedTextModel: vm.content.selectedTextModel,
                 selectedImageModel: vm.content.selectedImageModel,
                 textModels: vm.content.textModels,
-                imageModels: vm.content.imageModels
+                imageModels: vm.content.imageModels,
+                // Explicitly convert toggle values to booleans (defaulting to false)
+                enableForTextBox: vm.content.enableForTextBox === true,
+                enableForTextArea: vm.content.enableForTextArea === true
             };
 
             genieService.saveConfiguration(config)
@@ -98,6 +107,8 @@
                     // Update original values
                     vm.content.originalSelectedTextModel = angular.copy(vm.content.selectedTextModel);
                     vm.content.originalSelectedImageModel = angular.copy(vm.content.selectedImageModel);
+                    vm.content.originalEnableForTextBox = vm.content.enableForTextBox;
+                    vm.content.originalEnableForTextArea = vm.content.enableForTextArea;
                     if ($scope.$$childHead) {
                         $scope.$$childHead.hasChanges = false;
                     }
@@ -133,9 +144,15 @@
                     vm.content.selectedTextModel = mapModel(response.data.SelectedTextModel);
                     vm.content.selectedImageModel = mapModel(response.data.SelectedImageModel);
 
+                    // Map the toggle options
+                    vm.content.enableForTextBox = response.data.enableForTextBox || false;
+                    vm.content.enableForTextArea = response.data.enableForTextArea || false;
+
                     // Update original values
                     vm.content.originalSelectedTextModel = angular.copy(vm.content.selectedTextModel);
                     vm.content.originalSelectedImageModel = angular.copy(vm.content.selectedImageModel);
+                    vm.content.originalEnableForTextBox = angular.copy(vm.content.enableForTextBox);
+                    vm.content.originalEnableForTextArea = angular.copy(vm.content.enableForTextArea);
 
                     // Broadcast configuration loaded event
                     $scope.$broadcast('configurationLoaded', vm.content);
@@ -145,6 +162,21 @@
                 notificationsService.error("Error", "Failed to load configuration");
                 console.error('Load error:', error);
             });
+
+        // Remove previous $scope.toggleEnableForText and add toggle function on vm
+        vm.toggleEnableForText = function (option) {
+            if (option === 'TextBox') {
+                vm.content.enableForTextBox = !vm.content.enableForTextBox;
+            } else if (option === 'TextArea') {
+                vm.content.enableForTextArea = !vm.content.enableForTextArea;
+            }
+        };
+
+        // Listen for configUpdated event and update vm.content accordingly
+        $scope.$on('configUpdated', function (event, data) {
+            vm.content.enableForTextBox = data.enableForTextBox;
+            vm.content.enableForTextArea = data.enableForTextArea;
+        });
 
         // Initialize with changes detection
         vm.hasChanges = false;

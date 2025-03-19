@@ -50,7 +50,9 @@ namespace Phases.UmbracoGenie.Repositories
                             new ImageModelDto { Name = "In-House", Model = "", ApiKey = "", Endpoint = "http://localhost:5000/api/image-generation" }
                         },
                         SelectedTextModel = new TextModelDto { Name = "OpenAI" },
-                        SelectedImageModel = new ImageModelDto { Name = "OpenAI" }
+                        SelectedImageModel = new ImageModelDto { Name = "OpenAI" },
+                        enableForTextArea = false,
+                        enableForTextBox = false
                     };
 
                     dbConfig ??= new UmbracoGenieConfig();
@@ -75,7 +77,6 @@ namespace Phases.UmbracoGenie.Repositories
 
                 _logger.LogInformation("saving Genie configuration");
                 var dbConfig = await scope.Database.FirstOrDefaultAsync<UmbracoGenieConfig>("WHERE Id = 1000");
-                _logger.LogInformation($"getting Genie configuration {dbConfig.OllamaTextEndpoint}");
                 bool isNew = dbConfig == null;
 
                 dbConfig ??= new UmbracoGenieConfig();
@@ -168,6 +169,15 @@ namespace Phases.UmbracoGenie.Repositories
             // Set selected models based on defaults
             dto.SelectedTextModel = dto.TextModels.FirstOrDefault(m => m.Name == dbModel.DefaultTextGenerationModel);
             dto.SelectedImageModel = dto.ImageModels.FirstOrDefault(m => m.Name == dbModel.DefaultImageGenerationModel);
+            dto.enableForTextArea = dbModel.enableForTextArea.HasValue ? 
+                                    (dbModel.enableForTextArea.Value == 1 ? (bool?)true : (bool?)false) : 
+                                    null;
+
+            dto.enableForTextBox = dbModel.enableForTextBox.HasValue ? 
+                                (dbModel.enableForTextBox.Value == 1 ? (bool?)true : (bool?)false) : 
+                                null;
+
+
 
             return dto;
         }
@@ -178,6 +188,8 @@ namespace Phases.UmbracoGenie.Repositories
             dbModel.Id = 1000;
             dbModel.DefaultTextGenerationModel = dto.SelectedTextModel?.Name;
             dbModel.DefaultImageGenerationModel = dto.SelectedImageModel?.Name;
+            dbModel.enableForTextArea = dto.enableForTextArea.HasValue ? (dto.enableForTextArea.Value ? 1 : 0) : 0;
+            dbModel.enableForTextBox = dto.enableForTextBox.HasValue ? (dto.enableForTextBox.Value ? 1 : 0) : 0;
 
             // Update Text Models
             var openAI = dto.TextModels?.FirstOrDefault(m => m.Name == "OpenAI");

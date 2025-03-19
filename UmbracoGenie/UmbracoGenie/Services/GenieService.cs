@@ -40,6 +40,36 @@ namespace Phases.UmbracoGenie.Services
             }
         }
 
+        public async Task<bool> GetIsGenieTextBoxEnabled()
+        {
+            try
+            {
+                var config = await _repository.GetConfigurationAsync();
+                return config?.enableForTextBox ?? false;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error occurred in GetConfigurationAsync");
+                throw;
+            }
+        }
+
+        public async Task<bool> GetIsGenieTextAreaEnabled()
+        {
+            try
+            {
+                var config = await _repository.GetConfigurationAsync();
+                return config?.enableForTextArea ?? false;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error occurred in GetConfigurationAsync");
+                throw;
+            }
+        }
+
+
+
         public async Task<bool> SaveConfigurationAsync(GenieConfigurationDto configuration)
         {
             try
