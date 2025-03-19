@@ -12,19 +12,19 @@
 		<Product>UGenie</Product>
 		<Title>UGenie</Title>
 		<Description>GenAI plugin for Umbraco backoffice, provides AI-powered content generation, text editing, and image generation. Powered by Microsoft's Semantic Kernel Connectors</Description>
-		<PackageTags>umbraco plugin package</PackageTags>
+		<PackageTags>umbraco-marketplace;umbraco-v13;semantic-kernel;umbraco-ai;umbraco-genai</PackageTags>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<Authors>Afreed</Authors>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<Version>1.9.2</Version>
+		<Version>1.9.3</Version>
 		<PackageIcon>Assets/logo.png</PackageIcon>
 		<SignAssembly>False</SignAssembly>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.SemanticKernel.Connectors.HuggingFace" Version="1.37.0-preview" />
-		<PackageReference Include="Umbraco.Cms.Web.Website" Version="13.6.0" />
-		<PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="13.6.0" />
+		<PackageReference Include="Umbraco.Cms.Web.Website" Version="13.7.2" />
+		<PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="13.7.2" />
 		<PackageReference Include="Microsoft.SemanticKernel" Version="1.37.0" />
 		<PackageReference Include="Microsoft.SemanticKernel.Connectors.Google" Version="1.37.0-alpha" />
 		<PackageReference Include="Microsoft.SemanticKernel.Connectors.Ollama" Version="1.37.0-alpha" />

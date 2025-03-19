@@ -1,11 +1,11 @@
 {
   "$schema": "https://marketplace.umbraco.com/umbraco-marketplace-schema.json",
   "AuthorDetails": {
-    "Name": "Afreed, Phases",
+    "Name": "Phases, Afreed",
     "Description": "Phases - We create digital efficiency - Web, Podio, Integrations",
     "Url": "https://www.phases.io/",
-    "ImageUrl": "https://github.com/Afreed-cp.png",
-    "SyncContributorsFromRepository": true,
+    "ImageUrl": "https://github.com/phases.png",
+    "SyncContributorsFromRepository": false,
     "Contributors": [
       {
         "Name": "Afreed",
