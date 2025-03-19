@@ -57,7 +57,10 @@ namespace Phases.UmbracoGenie.Repositories
 
                     dbConfig ??= new UmbracoGenieConfig();
                     UpdateDbModelFromDto(dbConfig, defaultConfig);
+                    await scope.Database.ExecuteAsync("SET IDENTITY_INSERT UmbracoGenieConfig ON");
                     await scope.Database.InsertAsync(dbConfig);
+                    // Disable IDENTITY_INSERT after insert
+                    await scope.Database.ExecuteAsync("SET IDENTITY_INSERT UmbracoGenieConfig OFF");
                 }
 
                 return MapToDto(dbConfig);
