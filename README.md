@@ -12,7 +12,10 @@ UGenie supports configuration through the Umbraco backoffice. After installation
 
 - **OpenAI**: Set your API key and choose the desired model for both text and image generation.
 - **Azure OpenAI**: Set the required API key and model for the Azure service.
+- **Google Gemini**: Set the required API key and model for the Google service.
 - **In-House Option**: Configure your in-house AI endpoint for both text and image generation.
+
+We will be adding all the connectors available in semantic kernel🚀
 
 ### Configuration Screenshots
 
