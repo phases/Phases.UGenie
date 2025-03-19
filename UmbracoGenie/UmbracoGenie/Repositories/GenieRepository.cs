@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Phases.UmbracoGenie.Models.Dtos;
 using Phases.UmbracoGenie.Models;
 using Phases.UmbracoGenie.Repositories.Interfaces;
-using Umbraco.Cms.Infrastructure.Scoping;
+using Umbraco.Cms.Core.Scoping;
 
 namespace Phases.UmbracoGenie.Repositories
 {
@@ -85,7 +85,10 @@ namespace Phases.UmbracoGenie.Repositories
                 if (isNew)
                 {
                     _logger.LogInformation("inserting Genie configuration");
+                    await scope.Database.ExecuteAsync("SET IDENTITY_INSERT UmbracoGenieConfig ON");
                     await scope.Database.InsertAsync(dbConfig);
+                    // Disable IDENTITY_INSERT after insert
+                    await scope.Database.ExecuteAsync("SET IDENTITY_INSERT UmbracoGenieConfig OFF");
                 }
                 else
                 {
