@@ -1,5 +1,8 @@
 {
   "$schema": "https://marketplace.umbraco.com/umbraco-marketplace-schema.json",
+  "Title": "UGenie",
+  "AlternateCategory": "Artificial Intelligence",
+  "Description": "GenAI plugin for Umbraco backoffice, provides AI-powered content generation, text editing, and image generation. Powered by Microsoft's Semantic Kernel Connectors",
   "AuthorDetails": {
     "Name": "Phases, Afreed",
     "Description": "Phases - We create digital efficiency - Web, Podio, Integrations",
@@ -13,14 +16,14 @@
       }
     ]
   },
-  "Category": "Editor Tools",
-  "Description": "GenAI plugin for Umbraco backoffice, provides AI-powered content generation, text editing, and image generation. Powered by Microsoft's Semantic Kernel Connectors",
+  "Categories ": "Editor Tools",
   "DocumentationUrl": "https://github.com/phases/Phases.UGenie/blob/main/README.md",
   "LicenseTypes": [ "Free" ],
   "IssueTrackerUrl": "https://github.com/phases/Phases.UGenie/issues",
   "PackageType": "Package",
-  "LookingForContributors": false,
+  "LookingForContributors": true,
   "LookingForMaintainer": false,
+  "VersionDependencyMode": "Default",
   "RelatedPackages": [
     {
       "PackageId": "",
@@ -49,7 +52,7 @@
       "Caption": "UGenie in Action -- Image Generation"
     }
   ],
-  "Title": "UGenie",
+
   "Tags": [ "umbraco", "semantickernel", "genai", "copilot", "ai", "backoffice" ],
   "VideoUrl": "https://www.youtube.com/watch?v=_QWEMU5rsK8"
 }
