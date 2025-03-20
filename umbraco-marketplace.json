@@ -1,0 +1,58 @@
+{
+  "$schema": "https://marketplace.umbraco.com/umbraco-marketplace-schema.json",
+  "Title": "UGenie",
+  "AlternateCategory": "Artificial Intelligence",
+  "Description": "GenAI plugin for Umbraco backoffice, provides AI-powered content generation, text editing, and image generation. Powered by Microsoft's Semantic Kernel Connectors",
+  "AuthorDetails": {
+    "Name": "Phases, Afreed",
+    "Description": "Phases - We create digital efficiency - Web, Podio, Integrations",
+    "Url": "https://www.phases.io/",
+    "ImageUrl": "https://github.com/phases.png",
+    "SyncContributorsFromRepository": false,
+    "Contributors": [
+      {
+        "Name": "Afreed",
+        "Url": "https://github.com/Afreed-cp"
+      }
+    ]
+  },
+  "Categories ": "Editor Tools",
+  "DocumentationUrl": "https://github.com/phases/Phases.UGenie/blob/main/README.md",
+  "LicenseTypes": [ "Free" ],
+  "IssueTrackerUrl": "https://github.com/phases/Phases.UGenie/issues",
+  "PackageType": "Package",
+  "LookingForContributors": true,
+  "LookingForMaintainer": false,
+  "VersionDependencyMode": "Default",
+  "RelatedPackages": [
+    {
+      "PackageId": "",
+      "Description": ""
+    }
+  ],
+  "Screenshots": [
+    {
+      "ImageUrl": "https://raw.githubusercontent.com/phases/Phases.UGenie/bbb0afb888bf4ec2ddc5e6851d9421b5e0e4ba4e/UmbracoGenie/UmbracoGenie/Assets/Screenshots/UGenieScreenshot1.png",
+      "Caption": "UGenie Configuration"
+    },
+    {
+      "ImageUrl": "https://raw.githubusercontent.com/phases/Phases.UGenie/refs/heads/main/UmbracoGenie/UmbracoGenie/Assets/Screenshots/UGenieScreenshot2.png",
+      "Caption": "UGenie Configuration Text Models"
+    },
+    {
+      "ImageUrl": "https://raw.githubusercontent.com/phases/Phases.UGenie/refs/heads/main/UmbracoGenie/UmbracoGenie/Assets/Screenshots/UGenieScreenshot4.png",
+      "Caption": "UGenie Configuration Image Models"
+    },
+    {
+      "ImageUrl": "https://raw.githubusercontent.com/phases/Phases.UGenie/refs/heads/main/UmbracoGenie/UmbracoGenie/Assets/Screenshots/UGenieScreenshot7.png",
+      "Caption": "UGenie in Action -- RTE"
+    },
+    {
+      "ImageUrl": "https://raw.githubusercontent.com/phases/Phases.UGenie/refs/heads/main/UmbracoGenie/UmbracoGenie/Assets/Screenshots/UGenieScreenshot8.png",
+      "Caption": "UGenie in Action -- Image Generation"
+    }
+  ],
+
+  "Tags": [ "umbraco", "semantickernel", "genai", "copilot", "ai", "backoffice" ],
+  "VideoUrl": "https://www.youtube.com/watch?v=_QWEMU5rsK8"
+}
