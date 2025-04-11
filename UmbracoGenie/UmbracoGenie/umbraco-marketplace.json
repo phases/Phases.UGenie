@@ -16,7 +16,7 @@
       }
     ]
   },
-  "Categories ": "Editor Tools",
+  "Category ": "Editor Tools",
   "DocumentationUrl": "https://github.com/phases/Phases.UGenie/blob/main/README.md",
   "LicenseTypes": [ "Free" ],
   "IssueTrackerUrl": "https://github.com/phases/Phases.UGenie/issues",
@@ -24,7 +24,6 @@
   "LookingForContributors": true,
   "LookingForMaintainer": false,
   "VersionDependencyMode": "Default",
-  "RelatedPackages": [],
   "Screenshots": [
     {
       "ImageUrl": "https://raw.githubusercontent.com/phases/Phases.UGenie/bbb0afb888bf4ec2ddc5e6851d9421b5e0e4ba4e/UmbracoGenie/UmbracoGenie/Assets/Screenshots/UGenieScreenshot1.png",

@@ -23,7 +23,9 @@
 		<RepositoryUrl>https://github.com/phases/Phases.UGenie</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<Copyright>phases@2025</Copyright>
-		<PackageProjectUrl>https://github.com/phases/Phases.UGenie/tree/main/UmbracoGenie/UmbracoGenie</PackageProjectUrl>
+		<PackageProjectUrl>https://github.com/phases/Phases.UGenie</PackageProjectUrl>
+		<Tags>umbraco-marketplace</Tags>
+		<RequireLicenseAcceptance>false</RequireLicenseAcceptance>
 	</PropertyGroup>
 
 	<ItemGroup>
