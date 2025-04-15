@@ -28,6 +28,7 @@ We will be adding all the connectors available in semantic kernel🚀
 
 *Configuring image generation options in Umbraco.*
 
+Need to add the toolbars for RTE so the options will appear, same with the image picker -> create a data type using Custom Image Picker with AI
 
 ## Screenshots
 
