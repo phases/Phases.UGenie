@@ -14,15 +14,15 @@
     }
   ],
   "javascript": [
-    "/App_Plugins/UmbracoGenie/CustomImagePicker/customImagePicker.controller.js",
-    "/App_Plugins/UmbracoGenie/CustomImagePicker/aiPicker.controller.js",
-    "~/App_Plugins/UmbracoGenie/BackOffice/UmbracoGenieAlias/genie.js",
-    "~/App_Plugins/UmbracoGenie/BackOffice/UmbracoGenieAlias/genie.controller.js",
-    "~/App_Plugins/UmbracoGenie/BackOffice/UmbracoGenieAlias/genie.service.js",
-    "~/App_Plugins/UmbracoGenie/GenieTextBox/js/genieTextboxController.js"
+    "/App_Plugins/UmbracoGenie/CustomImagePicker/customImagePicker.controller.js?v=1.1",
+    "/App_Plugins/UmbracoGenie/CustomImagePicker/aiPicker.controller.js?v=1.1",
+    "~/App_Plugins/UmbracoGenie/BackOffice/UmbracoGenieAlias/genie.js?v=1.1",
+    "~/App_Plugins/UmbracoGenie/BackOffice/UmbracoGenieAlias/genie.controller.js?v=1.1",
+    "~/App_Plugins/UmbracoGenie/BackOffice/UmbracoGenieAlias/genie.service.js?v=1.1",
+    "~/App_Plugins/UmbracoGenie/GenieTextBox/js/genieTextboxController.js?v=1.1"
   ],
   "css": [
-    "~/App_Plugins/UmbracoGenie/BackOffice/UmbracoGenieAlias/genie.css",
-    "~/App_Plugins/UmbracoGenie/GenieTextBox/css/style.genietextbox.css"
+    "~/App_Plugins/UmbracoGenie/BackOffice/UmbracoGenieAlias/genie.css?v=1.1",
+    "~/App_Plugins/UmbracoGenie/GenieTextBox/css/style.genietextbox.css?v=1.1"
   ]
 }

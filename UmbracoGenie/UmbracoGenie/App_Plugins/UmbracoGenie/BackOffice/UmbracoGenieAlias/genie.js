@@ -16,9 +16,15 @@
 
             $scope.textModels = ensureModelProperties(content.textModels);
             $scope.imageModels = ensureModelProperties(content.imageModels);
-            $scope.selectedTextModel = content.selectedTextModel;
+
+            // Ensure OpenAI is selected by default if no text model is selected
+            if (!content.selectedTextModel || !content.selectedTextModel.name) {
+                $scope.selectedTextModel = $scope.textModels.find(m => m.name === 'OpenAI') || $scope.textModels[0];
+            } else {
+                $scope.selectedTextModel = content.selectedTextModel;
+            }
+            
             $scope.selectedImageModel = content.selectedImageModel;
-            // Ensure default values for toggles
             $scope.enableForTextBox = angular.isDefined(content.enableForTextBox) ? content.enableForTextBox : false;
             $scope.enableForTextArea = angular.isDefined(content.enableForTextArea) ? content.enableForTextArea : false;
 
@@ -39,8 +45,11 @@
                 $scope.textModels = parentScope.vm.content.textModels;
                 $scope.imageModels = parentScope.vm.content.imageModels;
 
-                // Set selected models
-                if (parentScope.vm.content.selectedTextModel) {
+                // Ensure OpenAI is selected by default if no text model is selected
+                if (!parentScope.vm.content.selectedTextModel || !parentScope.vm.content.selectedTextModel.name) {
+                    $scope.selectedTextModel = $scope.textModels.find(m => m.name === 'OpenAI') || $scope.textModels[0];
+                    parentScope.vm.content.selectedTextModel = $scope.selectedTextModel;
+                } else {
                     $scope.selectedTextModel = $scope.textModels.find(
                         m => m.name === parentScope.vm.content.selectedTextModel.name
                     );

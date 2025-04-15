@@ -75,7 +75,12 @@
                     apiKey: ''
                 }
             ],
-            selectedTextModel: null,
+            selectedTextModel: {
+                name: 'OpenAI',
+                modelId: 'gpt-3.5-turbo',
+                apiKey: '',
+                endpoint: ''
+            },
             selectedImageModel: null,
             // New toggle options with default values
             enableForTextBox: false,
@@ -83,7 +88,7 @@
         };
 
         // Track original selections
-        vm.content.originalSelectedTextModel = vm.content.selectedTextModel;
+        vm.content.originalSelectedTextModel = angular.copy(vm.content.selectedTextModel);
         vm.content.originalSelectedImageModel = vm.content.selectedImageModel;
         // Track original toggle values
         vm.content.originalEnableForTextBox = vm.content.enableForTextBox;
@@ -91,7 +96,7 @@
 
         vm.save = function () {
             var config = {
-                selectedTextModel: vm.content.selectedTextModel,
+                selectedTextModel: vm.content.selectedTextModel || vm.content.textModels[0], // Default to OpenAI if none selected
                 selectedImageModel: vm.content.selectedImageModel,
                 textModels: vm.content.textModels,
                 imageModels: vm.content.imageModels,
@@ -105,7 +110,7 @@
                     notificationsService.success("Success", "Configuration saved successfully");
                     vm.hasChanges = false;
                     // Update original values
-                    vm.content.originalSelectedTextModel = angular.copy(vm.content.selectedTextModel);
+                    vm.content.originalSelectedTextModel = angular.copy(vm.content.selectedTextModel || vm.content.textModels[0]);
                     vm.content.originalSelectedImageModel = angular.copy(vm.content.selectedImageModel);
                     vm.content.originalEnableForTextBox = vm.content.enableForTextBox;
                     vm.content.originalEnableForTextArea = vm.content.enableForTextArea;
@@ -125,7 +130,7 @@
                 if (response.data) {
                     // Map PascalCase to camelCase
                     function mapModel(model) {
-                        if (!model) return null;
+                        if (!model) return vm.content.textModels[0]; // Default to OpenAI if no model
                         return {
                             name: model.Name,
                             modelId: model.ModelId,

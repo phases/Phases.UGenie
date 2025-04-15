@@ -27,13 +27,13 @@ namespace Phases.UmbracoGenie.Repositories
             try
             {
                 using var scope = _scopeProvider.CreateScope();
+                var database = scope.Database;
 
-                var dbConfig = await scope.Database.FirstOrDefaultAsync<UmbracoGenieConfig>("WHERE Id = 1000");
+                var dbConfig = await database.FirstOrDefaultAsync<UmbracoGenieConfig>("WHERE Id = 1000");
                 _logger.LogInformation("getting Genie configuration");
                 if (dbConfig == null)
                 {
                     _logger.LogInformation("creating Genie configuration");
-                    // Seed default configuration
                     var defaultConfig = new GenieConfigurationDto
                     {
                         TextModels = new List<TextModelDto>
@@ -57,10 +57,25 @@ namespace Phases.UmbracoGenie.Repositories
 
                     dbConfig ??= new UmbracoGenieConfig();
                     UpdateDbModelFromDto(dbConfig, defaultConfig);
-                    await scope.Database.ExecuteAsync("SET IDENTITY_INSERT UmbracoGenieConfig ON");
-                    await scope.Database.InsertAsync(dbConfig);
-                    // Disable IDENTITY_INSERT after insert
-                    await scope.Database.ExecuteAsync("SET IDENTITY_INSERT UmbracoGenieConfig OFF");
+
+                    // Handle different database providers
+                    var provider = database.DatabaseType.GetProviderName();
+                    if (provider != "System.Data.SQLite")
+                    {
+                        await database.ExecuteAsync("SET IDENTITY_INSERT UmbracoGenieConfig ON");
+                    }
+
+                    try 
+                    {
+                        await database.InsertAsync(dbConfig);
+                    }
+                    finally 
+                    {
+                        if (provider != "System.Data.SQLite")
+                        {
+                            await database.ExecuteAsync("SET IDENTITY_INSERT UmbracoGenieConfig OFF");
+                        }
+                    }
                 }
 
                 return MapToDto(dbConfig);
@@ -77,9 +92,10 @@ namespace Phases.UmbracoGenie.Repositories
             try
             {
                 using var scope = _scopeProvider.CreateScope();
+                var database = scope.Database;
 
                 _logger.LogInformation("saving Genie configuration");
-                var dbConfig = await scope.Database.FirstOrDefaultAsync<UmbracoGenieConfig>("WHERE Id = 1000");
+                var dbConfig = await database.FirstOrDefaultAsync<UmbracoGenieConfig>("WHERE Id = 1000");
                 bool isNew = dbConfig == null;
 
                 dbConfig ??= new UmbracoGenieConfig();
@@ -88,15 +104,28 @@ namespace Phases.UmbracoGenie.Repositories
                 if (isNew)
                 {
                     _logger.LogInformation("inserting Genie configuration");
-                    await scope.Database.ExecuteAsync("SET IDENTITY_INSERT UmbracoGenieConfig ON");
-                    await scope.Database.InsertAsync(dbConfig);
-                    // Disable IDENTITY_INSERT after insert
-                    await scope.Database.ExecuteAsync("SET IDENTITY_INSERT UmbracoGenieConfig OFF");
+                    var provider = database.DatabaseType.GetProviderName();
+                    if (provider != "System.Data.SQLite")
+                    {
+                        await database.ExecuteAsync("SET IDENTITY_INSERT UmbracoGenieConfig ON");
+                    }
+
+                    try 
+                    {
+                        await database.InsertAsync(dbConfig);
+                    }
+                    finally 
+                    {
+                        if (provider != "System.Data.SQLite")
+                        {
+                            await database.ExecuteAsync("SET IDENTITY_INSERT UmbracoGenieConfig OFF");
+                        }
+                    }
                 }
                 else
                 {
                     _logger.LogInformation("updating Genie configuration");
-                    await scope.Database.UpdateAsync(dbConfig);
+                    await database.UpdateAsync(dbConfig);
                 }
 
                 scope.Complete();
