@@ -36,6 +36,23 @@ namespace Phases.UmbracoGenie.Migrations
             }
             else
             {
+                if (!ColumnExists("UmbracoGenieConfig", "AzureOpenAITextModelName"))
+                {
+                    Create.Column("AzureOpenAITextModelName").OnTable("UmbracoGenieConfig").AsString().Nullable().WithDefaultValue("").Do();
+                    Logger.LogInformation("Added column AzureOpenAITextModelName");
+                }
+
+                if (!ColumnExists("UmbracoGenieConfig", "AzureOpenAITextModelAPIKey"))
+                {
+                    Create.Column("AzureOpenAITextModelAPIKey").OnTable("UmbracoGenieConfig").AsString().Nullable().WithDefaultValue("").Do();
+                    Logger.LogInformation("Added column AzureOpenAITextModelAPIKey");
+                }
+
+                if (!ColumnExists("UmbracoGenieConfig", "AzureOpenAITextEndpoint"))
+                {
+                    Create.Column("AzureOpenAITextEndpoint").OnTable("UmbracoGenieConfig").AsString().Nullable().WithDefaultValue("").Do();
+                    Logger.LogInformation("Added column AzureOpenAITextEndpoint");
+                }
                 Logger.LogInformation("The database table UmbracoGenie already exists, skipping");
             }
         }
