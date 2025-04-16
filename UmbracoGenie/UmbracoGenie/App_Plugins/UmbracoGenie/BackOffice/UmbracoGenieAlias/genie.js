@@ -90,6 +90,11 @@
                 endpoint: ''
             },
             {
+                name: 'Azure OpenAI',
+                modelId: 'gpt-4',
+                apiKey: ''
+            },
+            {
                 name: 'Gemini',
                 modelId: 'gemini-pro',
                 apiKey: ''

@@ -36,9 +36,18 @@ namespace Phases.UmbracoGenie.Models
         [NullSetting(NullSetting = NullSettings.Null)]
         public string? OpenAITextModelAPIKey { get; set; }
 
-        [Column("OpenAITextEndpoint")]
+        //azureopenai
+        [Column("AzureOpenAITextModelName")]
         [NullSetting(NullSetting = NullSettings.Null)]
-        public string? OpenAITextEndpoint { get; set; }
+        public string? AzureOpenAITextModelName { get; set; }
+
+        [Column("AzureOpenAITextModelAPIKey")]
+        [NullSetting(NullSetting = NullSettings.Null)]
+        public string? AzureOpenAITextModelAPIKey { get; set; }
+
+        [Column("AzureOpenAITextEndpoint")]
+        [NullSetting(NullSetting = NullSettings.Null)]
+        public string? AzureOpenAITextEndpoint { get; set; }
 
         //gemini
         [Column("GeminiTextModelName")]

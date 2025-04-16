@@ -34,12 +34,20 @@ namespace Phases.UmbracoGenie.Services
                 _logger.LogInformation($"Creating kernel for model {config.SelectedTextModel.Name}");
                 switch (config.SelectedTextModel.Name)
                 {
-                    case "OpenAI":
+                    case "AzureOpenAI":
                         if (!string.IsNullOrEmpty(config.SelectedTextModel.ApiKey))
                         {
                             builder.Services.AddAzureOpenAIChatCompletion(
                                 config.SelectedTextModel.ModelId,
                                 config.SelectedTextModel.Endpoint,
+                                config.SelectedTextModel.ApiKey);
+                        }
+                        break;
+                    case "OpenAI":
+                        if (!string.IsNullOrEmpty(config.SelectedTextModel.ApiKey))
+                        {
+                            builder.Services.AddOpenAIChatCompletion(
+                                config.SelectedTextModel.ModelId,
                                 config.SelectedTextModel.ApiKey);
                         }
                         break;

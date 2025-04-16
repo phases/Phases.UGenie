@@ -38,7 +38,8 @@ namespace Phases.UmbracoGenie.Repositories
                     {
                         TextModels = new List<TextModelDto>
                         {
-                            new TextModelDto { Name = "OpenAI", ModelId = "gpt-3.5-turbo", ApiKey = "", Endpoint = "" },
+                            new TextModelDto { Name = "OpenAI", ModelId = "gpt-3.5-turbo", ApiKey = "" },
+                            new TextModelDto { Name = "AzureOpenAI", ModelId = "gpt-3.5-turbo", ApiKey = "", Endpoint = "" },
                             new TextModelDto { Name = "Gemini Pro", ModelId = "gemini-pro", ApiKey = "" },
                             new TextModelDto { Name = "Ollama", ModelId = "llama2", Endpoint = "http://localhost:11434" },
                             //new TextModelDto { Name = "HuggingFace", ModelId = "bigscience/bloom", ApiKey = "", Endpoint = "https://api-inference.huggingface.co/models" }
@@ -60,6 +61,7 @@ namespace Phases.UmbracoGenie.Repositories
 
                     // Handle different database providers
                     var provider = database.DatabaseType.GetProviderName();
+                    _logger.LogInformation($"provider {0}", provider);
                     if (provider != "System.Data.SQLite")
                     {
                         await database.ExecuteAsync("SET IDENTITY_INSERT UmbracoGenieConfig ON");
@@ -149,7 +151,13 @@ namespace Phases.UmbracoGenie.Repositories
                         Name = "OpenAI",
                         ModelId = dbModel.OpenAITextModelName,
                         ApiKey = dbModel.OpenAITextModelAPIKey,
-                        Endpoint = dbModel.OpenAITextEndpoint
+                    },
+                    new TextModelDto
+                    {
+                        Name = "AzureOpenAI",
+                        ModelId = dbModel.AzureOpenAITextModelName,
+                        ApiKey = dbModel.AzureOpenAITextModelAPIKey,
+                        Endpoint = dbModel.AzureOpenAITextEndpoint
                     },
                     new TextModelDto
                     {
@@ -227,12 +235,19 @@ namespace Phases.UmbracoGenie.Repositories
             dbModel.enableForTextBox = dto.enableForTextBox.HasValue ? (dto.enableForTextBox.Value ? 1 : 0) : 0;
 
             // Update Text Models
+            var azureOpenAI = dto.TextModels?.FirstOrDefault(m => m.Name == "AzureOpenAI");
+            if (azureOpenAI != null)
+            {
+                dbModel.AzureOpenAITextModelName = azureOpenAI.ModelId;
+                dbModel.AzureOpenAITextModelAPIKey = azureOpenAI.ApiKey;
+                dbModel.AzureOpenAITextEndpoint = azureOpenAI.Endpoint;
+            }
+
             var openAI = dto.TextModels?.FirstOrDefault(m => m.Name == "OpenAI");
             if (openAI != null)
             {
                 dbModel.OpenAITextModelName = openAI.ModelId;
                 dbModel.OpenAITextModelAPIKey = openAI.ApiKey;
-                dbModel.OpenAITextEndpoint = openAI.Endpoint;
             }
 
             var gemini = dto.TextModels?.FirstOrDefault(m => m.Name == "Gemini");
@@ -267,12 +282,12 @@ namespace Phases.UmbracoGenie.Repositories
                 dbModel.OpenAIImageModelEndpoint = openAIImage.Endpoint;
             }
 
-            var azureOpenAI = dto.ImageModels?.FirstOrDefault(m => m.Name == "Azure OpenAI");
-            if (azureOpenAI != null)
+            var azureOpenAIImage = dto.ImageModels?.FirstOrDefault(m => m.Name == "Azure OpenAI");
+            if (azureOpenAIImage != null)
             {
-                dbModel.AzureOpenAIImageModelName = azureOpenAI.ModelId;
-                dbModel.AzureOpenAIImageModelAPIKey = azureOpenAI.ApiKey;
-                dbModel.AzureOpenAIImageModelEndpoint = azureOpenAI.Endpoint;
+                dbModel.AzureOpenAIImageModelName = azureOpenAIImage.ModelId;
+                dbModel.AzureOpenAIImageModelAPIKey = azureOpenAIImage.ApiKey;
+                dbModel.AzureOpenAIImageModelEndpoint = azureOpenAIImage.Endpoint;
             }
 
             var inHouse = dto.ImageModels?.FirstOrDefault(m => m.Name == "In-House");
