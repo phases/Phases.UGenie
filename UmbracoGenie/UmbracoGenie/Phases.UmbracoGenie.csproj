@@ -16,7 +16,7 @@
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<Authors>Afreed</Authors>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<Version>4.0.1</Version>
+		<Version>1.1.2</Version>
 		<PackageIcon>Assets/logo.png</PackageIcon>
 		<SignAssembly>False</SignAssembly>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
