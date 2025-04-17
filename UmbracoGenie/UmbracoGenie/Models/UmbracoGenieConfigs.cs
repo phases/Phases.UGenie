@@ -8,10 +8,10 @@ using Umbraco.Cms.Infrastructure.Persistence.DatabaseAnnotations;
 
 namespace Phases.UmbracoGenie.Models
 {
-    [TableName("UmbracoGenieConfig")]
+    [TableName("UmbracoGenieConfigs")]
     [PrimaryKey("Id", AutoIncrement = false)]
     [ExplicitColumns]
-    public class UmbracoGenieConfig
+    public class UmbracoGenieConfigs
     {
         [PrimaryKeyColumn]
         [NullSetting(NullSetting = NullSettings.NotNull)]

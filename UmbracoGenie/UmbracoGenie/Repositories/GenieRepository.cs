@@ -29,7 +29,7 @@ namespace Phases.UmbracoGenie.Repositories
                 using var scope = _scopeProvider.CreateScope();
                 var database = scope.Database;
 
-                var dbConfig = await database.FirstOrDefaultAsync<UmbracoGenieConfig>("WHERE Id = 1000");
+                var dbConfig = await database.FirstOrDefaultAsync<UmbracoGenieConfigs>("WHERE Id = 1000");
                 _logger.LogInformation("getting Genie configuration");
                 if (dbConfig == null)
                 {
@@ -56,7 +56,7 @@ namespace Phases.UmbracoGenie.Repositories
                         enableForTextBox = false
                     };
 
-                    dbConfig ??= new UmbracoGenieConfig();
+                    dbConfig ??= new UmbracoGenieConfigs();
                     UpdateDbModelFromDto(dbConfig, defaultConfig);
 
                     // Handle different database providers
@@ -64,7 +64,7 @@ namespace Phases.UmbracoGenie.Repositories
                     _logger.LogInformation($"provider {0}", provider);
                     if (provider != "System.Data.SQLite")
                     {
-                        await database.ExecuteAsync("SET IDENTITY_INSERT UmbracoGenieConfig ON");
+                        await database.ExecuteAsync("SET IDENTITY_INSERT UmbracoGenieConfigs ON");
                     }
 
                     try 
@@ -75,7 +75,7 @@ namespace Phases.UmbracoGenie.Repositories
                     {
                         if (provider != "System.Data.SQLite")
                         {
-                            await database.ExecuteAsync("SET IDENTITY_INSERT UmbracoGenieConfig OFF");
+                            await database.ExecuteAsync("SET IDENTITY_INSERT UmbracoGenieConfigs OFF");
                         }
                     }
                 }
@@ -97,10 +97,10 @@ namespace Phases.UmbracoGenie.Repositories
                 var database = scope.Database;
 
                 _logger.LogInformation("saving Genie configuration");
-                var dbConfig = await database.FirstOrDefaultAsync<UmbracoGenieConfig>("WHERE Id = 1000");
+                var dbConfig = await database.FirstOrDefaultAsync<UmbracoGenieConfigs>("WHERE Id = 1000");
                 bool isNew = dbConfig == null;
 
-                dbConfig ??= new UmbracoGenieConfig();
+                dbConfig ??= new UmbracoGenieConfigs();
                 UpdateDbModelFromDto(dbConfig, configuration);
 
                 if (isNew)
@@ -109,7 +109,7 @@ namespace Phases.UmbracoGenie.Repositories
                     var provider = database.DatabaseType.GetProviderName();
                     if (provider != "System.Data.SQLite")
                     {
-                        await database.ExecuteAsync("SET IDENTITY_INSERT UmbracoGenieConfig ON");
+                        await database.ExecuteAsync("SET IDENTITY_INSERT UmbracoGenieConfigs ON");
                     }
 
                     try 
@@ -120,7 +120,7 @@ namespace Phases.UmbracoGenie.Repositories
                     {
                         if (provider != "System.Data.SQLite")
                         {
-                            await database.ExecuteAsync("SET IDENTITY_INSERT UmbracoGenieConfig OFF");
+                            await database.ExecuteAsync("SET IDENTITY_INSERT UmbracoGenieConfigs OFF");
                         }
                     }
                 }
@@ -140,7 +140,7 @@ namespace Phases.UmbracoGenie.Repositories
             }
         }
 
-        private GenieConfigurationDto MapToDto(UmbracoGenieConfig dbModel)
+        private GenieConfigurationDto MapToDto(UmbracoGenieConfigs dbModel)
         {
             var dto = new GenieConfigurationDto
             {
@@ -225,7 +225,7 @@ namespace Phases.UmbracoGenie.Repositories
             return dto;
         }
 
-        private void UpdateDbModelFromDto(UmbracoGenieConfig dbModel, GenieConfigurationDto dto)
+        private void UpdateDbModelFromDto(UmbracoGenieConfigs dbModel, GenieConfigurationDto dto)
         {
             // Set defaults
             dbModel.Id = 1000;

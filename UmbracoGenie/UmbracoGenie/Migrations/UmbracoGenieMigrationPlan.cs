@@ -9,7 +9,7 @@ namespace Phases.UmbracoGenie.Migrations
 {
     public class UmbracoGenieMigrationPlan : PackageMigrationPlan
     {
-        public UmbracoGenieMigrationPlan() : base("UmbracoGenie")
+        public UmbracoGenieMigrationPlan() : base("UmbracoGenieUpdate")
         {
         }
 

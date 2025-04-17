@@ -40,12 +40,13 @@ namespace Phases.UmbracoGenie.Composer
             }
             // Create a migration plan for a specific project/feature
             // We can then track that latest migration state/step for this project/feature
-            var migrationPlan = new MigrationPlan("UmbracoGenie");
+            var migrationPlan = new MigrationPlan("UmbracoGenieUpdate");
 
             // This is the steps we need to take
             // Each step in the migration adds a unique value
             migrationPlan.From(string.Empty)
-                .To<UmbracoGenieTablesMigration>("umbracogenie-db-1");
+                .To<UmbracoGenieTablesMigration>("umbracogenie-db-1")
+                .To<UmbracoGenieTablesMigration>(new Guid("920D13EC-EDBE-42F6-94E5-B75F9FB27284"));
 
             // Go and upgrade our site (Will check if it needs to do the work or not)
             // Based on the current/latest step

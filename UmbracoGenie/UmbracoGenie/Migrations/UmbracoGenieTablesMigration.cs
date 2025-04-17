@@ -29,31 +29,24 @@ namespace Phases.UmbracoGenie.Migrations
 
         protected override void Migrate()
         {
-            if (TableExists("UmbracoGenieConfig") == false)
+            try
             {
-                Create.Table<UmbracoGenieConfig>().Do();
-                Logger.LogInformation("The UmbracoGenie table added");
+                if (TableExists("UmbracoGenieConfigs") == false)
+                {
+                    Create.Table<UmbracoGenieConfigs>().Do();
+                    Delete.Table("UmbracoGenieConfig").Do();
+                    Logger.LogInformation("The UmbracoGenie table added");
+                }
+                else
+                {
+                    Delete.Table("UmbracoGenieConfig").Do();
+                    Logger.LogInformation("Database table schema updated successfully");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                if (!ColumnExists("UmbracoGenieConfig", "AzureOpenAITextModelName"))
-                {
-                    Create.Column("AzureOpenAITextModelName").OnTable("UmbracoGenieConfig").AsString().Nullable().WithDefaultValue("").Do();
-                    Logger.LogInformation("Added column AzureOpenAITextModelName");
-                }
-
-                if (!ColumnExists("UmbracoGenieConfig", "AzureOpenAITextModelAPIKey"))
-                {
-                    Create.Column("AzureOpenAITextModelAPIKey").OnTable("UmbracoGenieConfig").AsString().Nullable().WithDefaultValue("").Do();
-                    Logger.LogInformation("Added column AzureOpenAITextModelAPIKey");
-                }
-
-                if (!ColumnExists("UmbracoGenieConfig", "AzureOpenAITextEndpoint"))
-                {
-                    Create.Column("AzureOpenAITextEndpoint").OnTable("UmbracoGenieConfig").AsString().Nullable().WithDefaultValue("").Do();
-                    Logger.LogInformation("Added column AzureOpenAITextEndpoint");
-                }
-                Logger.LogInformation("The database table UmbracoGenie already exists, skipping");
+                Logger.LogError(ex, "Error during UmbracoGenieTablesMigration");
+                throw;
             }
         }
     }
