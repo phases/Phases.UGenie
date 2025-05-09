@@ -96,17 +96,17 @@ namespace Phases.UmbracoGenie.Services
                         if (!string.IsNullOrEmpty(config.SelectedImageModel.ApiKey))
                         {
                             builder.Services.AddAzureOpenAITextToImage(
-                                deploymentName:config.SelectedTextModel.ModelId,
-                                endpoint:config.SelectedTextModel.Endpoint,
-                                apiKey:config.SelectedTextModel.ApiKey);
+                                deploymentName:config.SelectedImageModel.ModelId,
+                                endpoint:config.SelectedImageModel.Endpoint,
+                                apiKey:config.SelectedImageModel.ApiKey);
                         }
                         break;
                     case "OpenAI":
                         if (!string.IsNullOrEmpty(config.SelectedImageModel.ApiKey))
                         {
                             builder.Services.AddOpenAITextToImage(
-                                modelId: config.SelectedTextModel.ModelId,
-                                apiKey: config.SelectedTextModel.ApiKey);
+                                modelId: config.SelectedImageModel.ModelId,
+                                apiKey: config.SelectedImageModel.ApiKey);
                         }
                         break;
                 }
